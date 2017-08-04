@@ -1,0 +1,25 @@
+@media screen and (max-width:600px) {
+
+.stage-detail-list > li > div.stage-title >span {
+	margin-top:10px;
+	margin-left:5px;
+}
+
+.stage-detail-list > li > div.stage-summary {
+	padding-left:45px;
+}
+	
+.stage-detail-list > li > div.stage-summary > div .key{
+	display:inline-block;
+	width:40%;
+	font-size:10px;
+	padding-right:10px;
+}
+
+.stage-detail-list > li > div.stage-summary > div .val{
+	display:inline-block;
+	width:59%;
+	font-size:10px;
+}
+	
+}

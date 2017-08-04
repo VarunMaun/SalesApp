@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Sales App</title>
+
+<meta charset="utf-8">
+<meta name="viewport" content="initial-scale=1, maximum-scale=1">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+<!-- Library CSS -->
+<link href="resources/css/font-awesome.min.css" rel="stylesheet" />
+<link href="resources/css/materialize.min.css" rel="stylesheet" />
+
+<!-- App CSS -->
+<link href="resources/css/app-layout.css" rel="stylesheet" />
+
+<!-- Library JS -->
+<script src="resources/js/jquery-3.2.1.min.js"></script>
+<script src="resources/js/materialize.min.js"></script>
+<script src="resources/js/jquery.validate.min.js"></script>
+<!-- App JS -->
+
+
+</head>
+<body>
+
+
+<div class="side-bar">
+
+<h3>MCPQ</h3>
+
+<h5>Pipeline</h5>
+<ul>
+<li><a href="map.html"><i class="fa fa-globe" style="color:#fff;background:#61D2FE;"></i><span>Map View</span></a></li>
+<li><a href="leads.html"><i class="fa fa-user" style="color:#fff;background: #FE4A65"></i>Leads</a></li>
+<li><a href="opportunities.html"  class="active"><i class="fa   fa-briefcase " style="color:#fff;background: #FFA500"></i>Opportunities</a></li>
+<li><a href="pipeline-summary.html" ><i class="fa fa-binoculars" style="color:#fff;background:#48DC6C"></i>Active Bids</a></li>
+<li><a href="bids.html" ><i class="fa fa-list-ul" style="color:#fff;background:#6A71E6"></i>Bids List</a></li>
+</ul>
+
+
+
+
+<h5>Orders</h5>
+<ul>
+<li><a href="orders.html"><i class="fa fa-file-text" style="color:#FFf;background:#27AE61;"></i>Orders</a></li>
+<li><a href="contracts.html" ><i class="fa fa-handshake-o" style="color:#fff;background: #ff2d55;font-size: 12px;padding: 5px 3px;"></i><span>Contracts</span></a></li>
+</ul>
+
+
+<h5>Misc</h5>
+<ul>
+<li><a href="products.html" ><i class="fa fa-shopping-cart" style="color:#fff;background: #0192FF;"></i><span>Products</span></a></li>
+<li><a href="favourites.html"><i class="fa fa-star" style="color:#FFA500;background:#FED201;"></i>Favorites</a></li>
+</ul>
+
+
+
+
+
+
+</div>
+<div class="content-wrapper">
+<div class="content-box">
+
+
+
+<div class="content-header" style="padding:5px;">
+
+<div  style="margin-bottom:0px;">
+
+<a href="#!" class="bid-back-btn">&lt;&nbsp;Back</a>
+
+
+<div class="bid-header">
+<div class="account">Vodafone India</div> 
+<div class="title">Request for new devices</div>
+
+
+</div>
+
+
+<div class="bid-progress-stages">
+
+<div class="current-stage"><span class="lbl">Current Stage:</span><span class="val">Pricing</span></div>
+<div class="action-btns"><span class="lbl">Move:</span><a href="#!">&lt;</a><a href="#!">&gt;</a></div>
+
+<div class="pipe">
+
+<div class="stg stg1 complete">15 Apr</div>
+<div class="stg stg2 complete">23 Jun</div>
+<div class="stg stg3 current">16 Jul</div>
+<div class="stg stg4">30 Jul</div>
+</div>
+
+</div>
+
+
+</div>
+</div>
+
+
+<div class="content-body " style="background: #f1f1f1" >
+
+
+<div  style="height:100%;width:100%;position: relative;">
+<ul class="tabs" style="">
+        <li class="tab"><a class="active" href="#opp-details-tab">Opportunity Details</a></li>
+        <li class="tab"><a  href="#prods-tab">Products</a></li>
+        <li class="tab"><a href="#docs-tab">Documents</a></li>
+        <li class="tab"><a href="#activity-log-tab">Activity Log</a></li>
+      </ul>
+
+
+
+
+
+<div class="tab-content-wrap">
+<div id="opp-details-tab">
+<h5>Opportunity Description:</h5>
+<div class="section-val">Vodafone is looking for a new device that can get their monkeys to work.
+</div>
+
+<h5>Target Completion:</h5>
+<div class="section-val">July 30 2017</div>
+
+
+<h5>Product Categories:</h5>
+<div class="section-val">Copper, NBN and Broadband
+</div>
+
+<h5>Site Locations:</h5>
+
+<div class="site-address-wrap">
+
+<div class="site-address">
+<div class="site-nickname">Ahmedabad Site 1</div>
+<div class="address-line">385/5, Sector 29</div>
+<div class="address-line">Gandhinagar, Gujarat, 382030</div>
+<div class="address-line"></div>
+</div>
+
+<div class="site-address">
+<div class="site-nickname">Ahmedabad Site 2</div>
+<div class="address-line">385/5, Sector 29</div>
+<div class="address-line">Gandhinagar, Gujarat, 382030</div>
+<div class="address-line"></div>
+</div>
+
+
+</div>
+
+</div>
+<div id="prods-tab">
+
+
+
+<a href="#product-selection-modal" class="edit-product-table-link"><i class="fa fa-edit"></i> Select Products</a>
+<a href="#!" class="edit-product-prices-link"><i class="fa fa-dollar"></i> Configure Price</a>
+<a href="#!" class="generate-quote-link"><i class="fa fa-gear"></i> Generate Quote</a>
+
+<table class="product-table">
+<thead>
+<tr>
+<th>Action</th>
+<th>Sr No</th>
+<th>Site</th>
+<th>Product Code</th>
+<th>Product Configuration</th>
+<th>List Price</th>
+<th>Units</th>
+<th>Discount</th>
+<th>Total</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#!">Edit</a>&nbsp;<a href="#!">Delete</a></td>
+
+<td>1</td>
+<td>Ahmedabad Site 1</td>
+<td>XTC102 <BR />NBN 502</td>
+<td>Standard</td>
+<td>$100</td>
+<td><input type="number" value="1" ></td>
+<td>0</td>
+<td>$100</td>
+
+</tr>
+</tbody>
+
+<tfoot>
+<tr>
+<td colspan="8"><b>Total</b></td>
+<td>$100</td>
+</tr>
+</tfoot>
+</table>
+
+</div>
+<div id="docs-tab">
+	<h5>Documents:</h5>
+
+</div>
+<div id="activity-log-tab">
+<h5>Activity Log:</h5>
+
+</div>
+
+</div>
+
+
+
+
+</div>
+
+
+</div>
+</div>
+
+</div>
+
+
+
+
+
+<div id="product-selection-modal" class="modal" style="">
+<div style="position: relative;height:100%">
+<!-- <div class="modal-header">
+<a class="modal-close right btn-flat">Close</a>
+<div class="title">Product Selection</div>
+</div> -->
+
+
+<div style="position: absolute;top:0px;left:300px;bottom:0px;right:0px;background: #f1f1f1">
+<div style="height:100%;width:100%;position: relative;">
+
+<div style="height:56px;background: #2e4460;border-bottom:1px solid #ccc;">
+<div class="row" style="background: #2e4460;color:#fff;">
+
+<div class="col s3">
+<span style="font-size:18px;color:#fff;font-weight:600;padding:10px;display:block;    padding-left: 0px;">Available Products</span>
+</div>
+
+<div class=" col s3">
+<select multiple="multiple">
+      <option value="" disabled selected>Choose Categories</option>      
+      <option value="1">NBN</option>
+      <option value="2">COPPER</option>
+      <option value="3">WIRELESS</option>
+    </select>
+</div>
+
+<div class=" col s3">
+<select multiple="multiple">
+      <option value="" disabled selected>Choose Price Range</option>
+      <option value="1">$0  - $100</option>
+      <option value="2">$100 - $200</option>
+      <option value="3">Above $200</option>
+    </select>
+</div>
+
+<div class=" col s3">
+<a class="btn-flat white-text modal-close right"><i class="fa fa-close"></i></a>
+</div>
+
+</div>
+</div>
+
+
+<div style="position: absolute;top:56px;right:300px;left:0px;bottom:0px;background: #fff;">
+<div style="background: #e0e0e0;padding:8px;">
+<input type="text" placeholder="Search" class="search-box-1">
+</div>
+
+<table  class="product-select-table">
+<thead>
+<tr>
+<th>Product Code</th>
+<th>Product Name</th>
+<th>Product Category</th>
+<th>Product Description</th>
+<th>List Price</th>
+</tr>
+</thead>
+<tbody>
+<tr class="active">
+<td>XTC01</td>
+<td>Product 1</td>
+<td>MPLS</td>
+<td>Bleh</td>
+<td>$100</td>
+</tr>
+<tr class="">
+<td>XTC02</td>
+<td>Product 2</td>
+<td>MPLS</td>
+<td>Bleh</td>
+<td>$200</td>
+</tr>
+<tr class="">
+<td>XTC02</td>
+<td>Product 2</td>
+<td>MPLS</td>
+<td>Bleh</td>
+<td>$200</td>
+</tr>
+<tr class="">
+<td>XTC02</td>
+<td>Product 2</td>
+<td>MPLS</td>
+<td>Bleh</td>
+<td>$200</td>
+</tr>
+<tr class="">
+<td>XTC02</td>
+<td>Product 2</td>
+<td>MPLS</td>
+<td>Bleh</td>
+<td>$200</td>
+</tr>
+<tr class="">
+<td>XTC02</td>
+<td>Product 2</td>
+<td>MPLS</td>
+<td>Bleh</td>
+<td>$200</td>
+</tr>
+</tbody>
+
+</table>
+
+</div>
+<div style="position: absolute;top:56px;width:300px;right:0px;bottom:0px;background: #fff;border-left:1px solid #ccc; ">
+<div style="height:100%;position: relative;">
+<div style="font-size:18px;color:#de552e;font-weight:600;padding:10px;padding-bottom: 11px;display:block;border-bottom:1px solid #ccc;background: #fff;">Product Overview - XTC01</div>
+<div style="position: absolute;top:50px;left:0px;right:0px;bottom:200px;overflow:auto;">
+
+
+
+<span style="font-size:14px;color:#131516;font-weight:600;padding:0px 10px;display:block;">Package Details</span>
+
+<ul class="prod-dets-list">
+<li><span class="k">Encryption</span><span class="v"></span></li>
+<li><span class="k">Routing</span><span class="v"></span></li>
+<li><span class="k">Access Speed</span><span class="v"></span></li>
+<li><span class="k">Access Type</span><span class="v"></span></li>
+<li><span class="k">MPLS Topology</span><span class="v"></span></li>
+<li><span class="k">MPLS Project</span><span class="v"></span></li>
+</ul>
+
+
+<span style="font-size:14px;color:#131516;font-weight:600;padding:5px 10px;display:block;">Child Products</span>
+
+<ul class="prod-dets-list">
+<li><span class="o">BB ,LL  ,Internet, Mircowave</span></li>
+<li><span class="o">SLA(99,95,92)</span></li>
+<li><span class="o">QOS(Gold/Silver/Bronze)</span></li>
+<li><span class="o">Back Up(Basic/Plus/Complete)</span></li>
+<li><span class="o">Speed (5mbps/10mbps)</span></li>
+</ul>
+
+</div>
+
+<div style="position: absolute;bottom:0px;left:0px;right:0px;height:200px;overflow: auto;border-top:1px solid #ccc;background: #f1f1f1;;padding:10px;">
+<span style="color:#131516;margin-bottom:10px;display:block;font-weight:600;font-size:14px;">Select Configuration:</span>
+<select class="browser-default">
+<option>Standard Configuration</option>
+
+</select>
+
+
+<a class="btn " style="color:#fff;background:#ff6d00;font-size:12px;line-height:30px;height:30px;display:block;margin-top:10px;font-weight:bold;" >Add to Selected Site</a>
+<a class="btn grey darken-1 " style="color:#fff;;font-size:12px;line-height:30px;height:30px;display:block;margin-top:10px;font-weight:bold;" >Add to All Sites</a>
+
+
+</div>
+
+</div>
+
+</div>
+
+
+
+</div>
+</div>
+
+
+<div style="position: absolute;top:0px;width:300px;bottom:0px;left:0px;background: #fff;border-right:1px solid #ccc">
+<div style="height:100%;width:100%;background: #eaeaea;">
+<div style="padding:0px;position: relative;">
+<div style="font-size:18px;color:#fff;font-weight:600;padding:10px;padding-bottom:19px;display:block;background:#2e4460;">Selected Products:</div>
+
+  <ul class="collapsible selected-product-collapsible" data-collapsible="accordion" style="background: #fff;margin-top:0px;">
+    <li>
+      <div class="collapsible-header">Ahmedabad Site 1</div>
+      <div class="collapsible-body">
+      	<ul class="prod-list">
+      	<li>
+      	<a class="del"><i class="fa fa-close"></i></a>
+      		<span class="title">Product 1</span>
+      		<span class="config">Standard Config</span>
+      		
+      	</li>
+      	<li>
+      	<a class="del"><i class="fa fa-close"></i></a>
+      		<span class="title">Product 2</span>
+      		<span class="config">Standard Config</span>
+      		
+      	</li>
+      	</ul>
+      
+      </div>
+    </li>
+    <li>
+      <div class="collapsible-header">Ahmedabad Site 2</div>
+      <div class="collapsible-body">
+      
+      <ul class="prod-list">
+      	<li>
+      	<a class="del"><i class="fa fa-close"></i></a>
+      		<span class="title">Product 1</span>
+      		<span class="config">Standard Config</span>
+      		
+      	</li>
+      	
+      	</ul>
+      </div>
+    </li>
+  </ul>
+
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+
+
+
+
+
+<script type="text/javascript">
+
+
+
+$(document).ready(function(){
+
+	
+	$('.bid-back-btn').click(function(){
+		window.location.href = 'pipeline-summary.html';
+	});
+	
+	$('ul.tabs').tabs();
+	 $('.modal').modal();
+	 $('select').material_select();
+	 $('.collapsible').collapsible();
+	 $('.collapsible').collapsible('open', 0);
+	 
+});
+
+</script>
+
+
+</body>
+</html>

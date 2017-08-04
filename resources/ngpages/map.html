@@ -1,0 +1,215 @@
+
+<div class="content-body content-body-full" >
+
+<div style="position: relative;height:100%;width:100%;">
+
+<div id="map-container" style="background:#eaeaea;height:100%;width:100%;">
+</div>
+
+<div class="card" style="position: absolute;top:20px;right:10px;width:220px;height:240px;z-index:999;background: #fff;padding:0px;border-radius:5px;">
+
+
+
+
+<div class="white " style="padding:5px 10px;border-bottom:1px solid #ccc;">
+
+
+
+
+
+<div style="color:rgba(0,0,0,0.7);font-weight: bold;font-size:14px;margin-bottom:5px;text-align: center;">ZONE:</div>
+
+<select class="browser-default" style="width:150px;display:block;;color:#131516;width:100%;;">
+<option>All India</option>
+<option>Gujarat</option>
+</select>
+</div>
+
+
+<div style="padding:10px;border-bottom:1px solid #ccc;">
+
+<img src="resources/css/img/icons/pin-blue.png" style="vertical-align: middle;"/>
+<span style="color:#131516;font-weight:600">Active Bids</span>
+<span style="color:#131516;font-size:20px;font-weight:bold;float:right;margin-right:10px;;">50</span>
+</div>
+
+<div style="padding:10px;border-bottom:1px solid #ccc;">
+<img src="resources/css/img/icons/pin-green.png" style="vertical-align: middle;"/>
+<span style="color:#131516;font-weight:600">Bid Won</span>
+<span style="color:#131516;font-size:20px;font-weight:bold;float:right;margin-right:10px;;">50</span>
+</div>
+
+<div style="padding:10px;">
+<img src="resources/css/img/icons/pin-red.png" style="vertical-align: middle;"/>
+<span style="color:#131516;font-weight:600">Bids Lost</span>
+<span style="color:#131516;font-size:20px;font-weight:bold;float:right;margin-right:10px;;">50</span>
+
+</div>
+
+
+</div>
+
+</div>
+</div>
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+
+L.Mask = L.Polygon.extend({
+	options: {
+		stroke: false,
+		color: '#aaa',
+		fillOpacity: 0.4,
+		clickable: true,
+
+		outerBounds: new L.LatLngBounds([-90, -360], [90, 360])
+	},
+
+	initialize: function (latLngs, options) {
+        
+         var outerBoundsLatLngs = [
+			this.options.outerBounds.getSouthWest(),
+			this.options.outerBounds.getNorthWest(),
+			this.options.outerBounds.getNorthEast(),
+			this.options.outerBounds.getSouthEast()
+		];
+        L.Polygon.prototype.initialize.call(this, [outerBoundsLatLngs, latLngs], options);	
+	},
+
+});
+L.mask = function (latLngs, options) {
+	return new L.Mask(latLngs, options);
+};
+
+
+var indiaBoundary = {
+		  "type": "FeatureCollection",
+		  "features": [
+		    {
+		      "type": "Feature",
+		      "properties": {},
+		      "geometry": {
+		        "type": "Polygon",
+		        "coordinates": [
+		          [
+		            [
+		              64.599609375,
+		              3.7765593098768635
+		            ],
+		            [
+		              98.4375,
+		              3.7765593098768635
+		            ],
+		            [
+		              98.4375,
+		              37.16031654673677
+		            ],
+		            [
+		              64.599609375,
+		              37.16031654673677
+		            ],
+		            [
+		              64.599609375,
+		              3.7765593098768635
+		            ]
+		          ]
+		        ]
+		      }
+		    }
+		  ]
+		};
+
+$(document).ready(function(){
+
+	
+
+	
+	
+
+$.get('resources/shape-file/states.json',function(states){
+	var mymap = L.map('map-container').setView([22.61401, 88.26416], 4);
+	
+	L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+		minZoom: 4,
+		maxZoom: 18,
+		attribution: '',
+		id: 'mapbox.streets'
+	}).addTo(mymap);
+
+	
+/* 	// transform geojson coordinates into an array of L.LatLng
+	var coordinates = indiaBoundary.features[0].geometry.coordinates[0];
+	var latLngs = [];
+	for (i=0; i<coordinates.length; i++) {
+	    latLngs.push(new L.LatLng(coordinates[i][1], coordinates[i][0]));
+	}
+
+	L.mask(latLngs).addTo(mymap);
+	
+	 */
+	
+	
+	var myStyle = {
+		    "color": "#111",
+		    "weight":1,
+		    "opacity": 1,
+		    "fillOpacity": 0.2,
+		    "fillColor":"#fff"
+		};
+	
+	var geolayer = L.geoJson(states,{
+		style:myStyle,
+	}).addTo(mymap);
+	
+	
+	
+	var blueIcon = L.icon({
+	    iconUrl: 'resources/css/img/icons/pin-blue.png',
+	    iconSize:     [32, 32], // size of the icon
+	    shadowSize:   [0, 0], // size of the shadow
+	    iconAnchor:   [16, 32], // point of the icon which will correspond to marker's location
+	    shadowAnchor: [0, 0],  // the same for the shadow
+	    popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+	});
+	
+	var greenIcon = L.icon({
+	    iconUrl: 'resources/css/img/icons/pin-green.png',
+	    iconSize:     [32, 32], // size of the icon
+	    shadowSize:   [0, 0], // size of the shadow
+	    iconAnchor:   [16, 32], // point of the icon which will correspond to marker's location
+	    shadowAnchor: [0, 0],  // the same for the shadow
+	    popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+	});
+	
+	var redIcon = L.icon({
+	    iconUrl: 'resources/css/img/icons/pin-red.png',
+	    iconSize:     [32, 32], // size of the icon
+	    shadowSize:   [0, 0], // size of the shadow
+	    iconAnchor:   [16, 32], // point of the icon which will correspond to marker's location
+	    shadowAnchor: [0, 0],  // the same for the shadow
+	    popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+	});
+	
+	
+	L.marker([22.35008,78.13477], {icon: blueIcon}).addTo(mymap);
+	L.marker([23.05952, 72.13623], {icon: greenIcon}).addTo(mymap);
+	L.marker([23.03298, 72.6004], {icon: redIcon}).addTo(mymap);
+	
+	L.marker([22.99, 72.6059], {icon: blueIcon}).addTo(mymap);
+	
+	L.marker([23.21737, 72.65945], {icon: greenIcon}).addTo(mymap);
+})
+
+
+	
+
+});
+
+</script>
+
