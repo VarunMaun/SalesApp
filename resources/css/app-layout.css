@@ -515,9 +515,9 @@ margin-right:24px;
 	display:inline-block;;
 	padding-top:10px;
 	margin-left:60px;
-	font-size:16px;
-	color:#444;
-	font-weight:600;
+	font-size:14px;
+	color:#131516;
+	font-weight:400;
 }
 
 .col2-list li a{
@@ -541,13 +541,12 @@ color:#fff;
 
 
 .lead-details .header{
-	height:80px;
-	border-bottom:1px solid #ccc;
-	padding:10px;
-	position: relative;
-	display: flex;
+	    height: 50px;
+    padding: 10px;
+    position: relative;
+    display: flex;
     align-items: center;
-     justify-content: space-between;
+    overflow: hidden;
 }
 
 
@@ -573,7 +572,7 @@ color:#fff;
 
 .lead-details .header .title{
 	font-size:24px;
-	font-weight:600;
+	font-weight:normal;
 	margin-left:10px;
 }
 
@@ -593,15 +592,17 @@ color:#fff;
 
 
 .lead-details  .details h5{
-font-size:20px;	
+font-size:18px;	
 display:inline-block;
 margin:20px 0px;
+color:#373d3f;
 font-weight:600;
 }
 
 
 .field{
 	position:relative;
+	font-size:14px;
 }
 
 
@@ -611,8 +612,9 @@ font-weight:600;
 	text-align:right;
 	margin-right:10px;
 	word-wrap:break-word;
-	color:#555f61;
-	vertical-align: top; 
+	color:#4E87C0;
+	vertical-align: top;
+	text-transform: capitalize; 
 }
 
 .field .field-label:after{
@@ -622,11 +624,12 @@ font-weight:600;
 .field .field-val{
 		display:inline-block;
 	word-wrap:break-word;
-	color:#373d3f; 
+	color:#131516; 
 	vertical-align: top;
 	position: absolute;
     max-height: 50px;
     overflow: auto;
+    text-transform: capitalize;
 }
 
 
