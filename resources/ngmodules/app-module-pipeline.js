@@ -54,7 +54,7 @@ app.controller('leadsMasterController', [ '$scope','$location','$filter','leadSe
 	$scope.openModalFlag = false;
 	
 	$scope.openNewLeadPopup = function(param){
-		$scope.editableData = null;
+		$scope.editableData = {};
 		openModalFlag = true;
 	}
 	
@@ -63,14 +63,25 @@ app.controller('leadsMasterController', [ '$scope','$location','$filter','leadSe
 		openModalFlag = true;
 	}
 	
+	
+	 $scope.$on('createUser', function(evt, data) {
+		 	console.log("Lead Created:");
+		 	console.log(data);
+		 	$scope.openModalFlag = false;
+		  });
+	 
+	 $scope.$on('closeNewUserPopup', function(evt, data) {
+		 	$scope.openModalFlag = false;
+		  });
+	 
+	 
+	
+	
 	$scope.init = function () {		
 
 		$scope.filterData('all');
 		
 		$scope.sortData('topic');
-		
-		
-		
 	}
 	
 	$scope.init();

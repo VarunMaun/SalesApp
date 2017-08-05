@@ -1,5 +1,12 @@
 @media screen and (max-width:600px) {
 
+	
+.content-wrapper{
+	left:0px !important;
+}	
+	
+	
+	
 .stage-detail-list > li > div.stage-title >span {
 	margin-top:10px;
 	margin-left:5px;

@@ -1,20 +1,170 @@
 <div>
 
-<h4>Lead Form</h4>
 
-<form>
+
+<form class="appform">
+
+
 <div class="row">
- <div class="input-field col s12">
-          <input  id="lead_topic" name="lead_topic"  type="text" >
-          <label for="lead_topic">Topic</label>
+<div class="col s12">
+<h4>Lead Form</h4>
+</div>
+<div class="col s12 m4">
+<h5>Lead Details</h5>
+
+ <div class="">
+ <label for="lead_topic">Topic</label>
+ <input  id="lead_topic" name="lead_topic"  type="text" >
+          
  </div>
-<div class="input-field col s12">
-          <input  id="lead_desc" name="lead_desc"  type="text" >
-          <label for="lead_desc">Description</label>
+<div class="">
+ <label for="lead_desc">Description</label>
+ <input  id="lead_desc" name="lead_desc"  type="text" class="browser-default" >
+ </div>
+
+<div class="">
+ <label for="lead_source">Source</label>
+ <select  id="lead_source" name="lead_source"  class="browser-default" >
+ 	<option value="">Select</option>
+ 	<option>Email</option>
+ 	<option>Roadshow</option>
+ 	<option>Website</option>
+ 	<option>Inquiry</option>
+ 	<option>Others</option>
+ </select>
+ </div>
+
+<div class="">
+ <label for="lead_status">Status</label>
+ <select  id="lead_status" name="lead_status"  class="browser-default" >
+ 	<option value="">Select</option>
+ 	<option>New</option>
+ 	<option>Evaluation</option>
+ 	<option>Qualified</option>
+ 	<option>Disqualified</option>
+ </select>
  </div>
 
 
 
+</div>
+<div class="col s12 m4">
+<div style="position:relative;">
+<h5>Contact</h5>
+
+<div ng-if="useExistingContact">
+<div class="form-toggle-link">
+<a ng-click="toggleContactSelection(false);" >Create New Contact</a>
+</div>
+
+<div>
+<label for="contact_selection">Select Contact</label>
+<select class="browser-default" name="contact_selection" id="contact_selection" ng-options="(contact.first_name + ' ' + contact.last_name) for contact in allContacts track by contact.uuid" ng-model="selectedContact">
+</select>
+</div>
+</div>
+
+
+
+<div ng-if="useExistingContact==false">  
+
+<div class="form-toggle-link">
+<a ng-click="toggleContactSelection(true);">Select Existing Contact</a>
+</div>
+
+<div class="">
+ <label for="contact_first_name">First Name</label>
+ <input  id="contact_first_name" name="contact_first_name"  type="text"   ng-model="newContact.firstName" >
+          
+ </div>
+ 
+ <div class="">
+ <label for="contact_last_name">Last Name</label>
+ <input  id="contact_last_name" name="contact_last_name"  type="text" class="browser-default" ng-model="newContact.lastName" >
+ </div>
+ 
+ 
+ <div class="">
+ <label for="contact_job_title">Job Title</label>
+ <input  id="contact_job_title" name="contact_job_title"  type="text" class="browser-default" ng-model="newContact.jobTitle" >
+ </div>
+ 
+ 
+ <div class="">
+ <label for="contact_email">Email Address</label>
+ <input  id="contact_email" name="contact_email"  type="text" class="browser-default" ng-model="newContact.emailAddress" >
+ </div>
+ 
+ 
+ <div class="">
+ <label for="contact_work_phone">Work Phone</label>
+ <input  id="contact_work_phone" name="contact_work_phone"  type="text" class="browser-default"  ng-model="newContact.workphones" >
+ </div>
+ 
+ 
+ <div class="">
+ <label for="contact_mobile_phone">Mobile Phone</label>
+ <input  id="contact_mobile_phone" name="contact_mobile_phone"  type="text" class="browser-default" ng-model="newContact.mobilephones"  >
+ </div>
+ </div>
+ 
+ </div>
+
+
+</div>
+<div class="col s12 m4">
+<div style="position: relative;">
+
+<h5>Account</h5>
+
+<div ng-if="useExistingAccount">
+<div class="form-toggle-link">
+<a ng-click="toggleAccountSelection(false);" >Create New Account</a>
+</div>
+
+<div>
+<label for="account_selection">Select Account:</label>
+<select class="browser-default" name="account_selection" id="account_selection" ng-options="(account.name) for account in allAccounts track by account.uuid" ng-model="selectedAccount">
+</select>
+</div>
+
+
+</div>
+
+
+
+<div ng-if="useExistingAccount==false">  
+
+<div class="form-toggle-link">
+<a ng-click="toggleAccountSelection(true);">Select Existing Account</a>
+</div>
+
+
+<div class="">
+ <label for="account_name">Company Name</label>
+ <input  id="account_name" name="account_name"  type="text" class="browser-default" ng-model="newAccount.name" >
+ </div>
+ 
+ <div class="">
+ <label for="account_website">Website</label>
+ <input  id="account_website" name="account_website"  type="text" class="browser-default"  ng-model="newAccount.website" >
+ </div>
+ 
+ <div class="">
+ <label for="account_address">Address</label>
+ <input  id="account_address" name="account_address"  type="text" class="browser-default"   ng-model="newAccount.address" >
+ </div>
+
+</div>
+</div>
+</div>
+
+
+<div class="col s12">
+<a  ng-click="cancelForm()"  class="waves-effect waves-light btn grey right" style="margin:10px 20px;">Cancel</a>
+<a ng-click="saveLead()" class="waves-effect waves-light btn blue right" style="margin:10px 20px;">Save</a>
+
+</div>
 
 </div>
 
@@ -23,5 +173,15 @@
 
 
 
+
 </form>
+
+<script>
+
+$(document).ready(function(){
+	
+});
+
+</script>
+
 </div>

@@ -42,18 +42,72 @@ app.directive('leadDetails', ['leadService', function(leadService) {
 
 
 
-app.directive('leadForm', ['leadService', function(leadService) {
+app.directive('leadForm', ['leadService','contactService','accountService','$rootScope', function(leadService,contactService,accountService,$rootScope) {
 	  return {
 	      restrict: 'E',
 	      replace: 'true',
 	      templateUrl : 'resources/ngcomponents/lead-form.html',
-	      scope: { itemid: '=' },
+	      scope: { item: '=' },
 	      link: function(scope, elem, attrs) {
 	    	  scope.commonUtil = commonUtil;
-	    	  scope.$watch('itemid', function() {
-		    	  var origObj = leadService.fetchById(scope.itemid);
-		    	  scope.lead = jQuery.extend(true, {}, origObj);;
-		    	  });
+	    	  
+	    	  scope.listOfContacts = []; 
+	    	  
+		    	  
+		    	  scope.lead = jQuery.extend(true, {}, scope.item);;
+		    	  
+		    	  
+		    	  scope.newContact = {};
+		    	  scope.newAccount = {};
+		    	  
+		    	  
+		    	  scope.useExistingContact = false;
+		    	  scope.useExistingAccount = false;
+		    	  
+		    	  scope.toggleContactSelection = function(v){
+		    		  scope.useExistingContact = v;
+		    	  }
+		    	  
+		    	  scope.toggleAccountSelection = function(v){
+		    		  scope.useExistingAccount = v;
+		    	  }
+		    	  
+		    	  scope.selectedContact= {};
+		    	  scope.allContacts=contactService.fetchAll();
+		    	  
+		    	  scope.selectedAccount= {};
+		    	  scope.allAccounts=accountService.fetchAll();
+		    	  
+		    	  
+		    	  
+		    	  
+		    	  scope.saveLead = function(){
+		    		  var emitObject = {};
+		    		  emitObject.lead = scope.lead;
+		    		  if(scope.useExistingContact){
+		    			  emitObject.contact =   scope.selectedContact;
+		    		  }
+		    		  else{
+		    			  emitObject.contact  = scope.newContact;
+		    		  }
+		    		  
+		    		  if(scope.useExistingAccount){
+		    			  emitObject.account =   scope.selectedAccount;
+		    		  }
+		    		  else{
+		    			  emitObject.account  = scope.newAccount;
+		    		  }
+		    		  
+		    		  $rootScope.$broadcast('createUser', emitObject);
+		    		  $rootScope.$broadcast('closeNewUserPopup', {});
+		    	  }
+		    	  
+		    	  scope.cancelForm = function(){		    		  
+		    		  $rootScope.$broadcast('closeNewUserPopup', {});
+		    	  }
+		    	  
+		    	  
+		    	  
 	      },
 	      
 	      

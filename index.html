@@ -10,20 +10,27 @@
 <link href="resources/css/font-awesome.min.css" rel="stylesheet" />
 <link href="resources/css/materialize.min.css" rel="stylesheet" />
 <link href="resources/css/leaflet.css" rel="stylesheet" />
+<link href="resources/css/select2.min.css" rel="stylesheet" />
 
 <!-- App CSS -->
 <link href="resources/css/app-layout.css" rel="stylesheet" />
-
+<link href="resources/css/app-layout-tablet.css" rel="stylesheet" />
+<link href="resources/css/app-layout-mobile.css" rel="stylesheet" />
 
 <!-- Library JS -->
 <script src="resources/js/jquery-3.2.1.min.js"></script>
 <script src="resources/js/materialize.min.js"></script>
 <script src="resources/js/jquery.validate.min.js"></script>
 <script src="resources/js/leaflet.js"></script>
+<script src="resources/js/select2.full.js"></script>
+<script src="resources/js/iscroll.js"></script>
+
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular-route.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular-animate.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular-sanitize.min.js"></script>
+
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-materialize/0.2.2/angular-materialize.min.js"></script>
 
@@ -52,11 +59,31 @@
 
 
 
+
+
 <!-- Angular Js -->
 <script type="text/javascript" src="resources/ngmodules/app-service.js"></script>
 <script type="text/javascript" src="resources/ngmodules/app-component.js"></script>
 <script type="text/javascript" src="resources/ngmodules/app-module-pipeline.js"></script>
 <script type="text/javascript" src="resources/ngmodules/app.js"></script>
+
+<script>
+$(document).ready(function(){
+	$(document).on("click", ".sideMenuToggleLink", function() {
+		if($('.side-bar').hasClass('slide-out-menu')){
+			$('.side-bar').removeClass('slide-out-menu');	
+		}
+		else{
+			$('.side-bar').addClass('slide-out-menu');
+		}
+		
+			
+		});
+	
+	
+});
+
+</script>
 
 </body>
 </html>
