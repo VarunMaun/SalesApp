@@ -2,6 +2,7 @@ function Lead(){
 	return {
 		  "topic": "",
 		  "uuid":"",
+		  "desc":"",
 		  "leadSource": "",
 		  "leadStatus": "",
 		  "statusReason": "",

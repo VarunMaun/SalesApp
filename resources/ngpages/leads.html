@@ -9,17 +9,14 @@
 <div class="row" style="height:100%">
 
 <div class="col s12 m5" style="height:100%;background: #f1f1f1;padding:0px;">
-<div style="height:100vh;border-right:1px solid #ccc;">
+<div style="height:100vh;border-right:1px solid #ccc;position:relative;">
 <div style="height:50px;background: #fff;">
 <span style="font-size:24px;color:#131516;margin:6px 10px;display:inline-block;">Leads</span>
 
 
-<a data-target="lead-form-popup" modal class="add-btn-plus" style="" open="openModalFlag" ng-click="openFormPopup()" >+</a>
-<div id="lead-form-popup" class="modal">
-<div class="modal-content">
-                    <p>A bunch of text</p>
-                </div>
-</div>
+<a data-target="lead-form-popup" modal class="add-btn-plus" style="" open="openModalFlag" ng-click="openNewLeadPopup()" >+</a>
+
+
 
 
 </div>
@@ -27,123 +24,18 @@
 <div style="background: #e0e0e0;padding:10px;">
 <input type="text" placeholder="Search" class="search-box-1" data-ng-model="query"  />
 </div>
+<div style="position:absolute;top:104px;left:0px;right:0px;bottom:0px;overflow: auto;">
 <ul class="col2-list" data-ng-repeat="o in dataList | filter:query  ">
 
 <li><a  data-ng-class="checkActive(o)"  data-ng-click="select($event,o)" data-uuid="{{o.uuid}}"><span class="title">{{o.topic}}</span><span class="desc">{{o.contact.account.name}}</span></a></li>
 
 </ul>
-
+</div>
 
 </div>
 </div>
 <div class="col s12 m7" style="height:100%;padding:0px;">
-
-<div class="lead-details">
-<div class="header">
-<div class="title">{{selectedData.topic}} </div>
-
-<a class="edit-btn"><i class="fa fa-pencil"></i></a>
-</div>
-<div class="details">
-<ul class="tabs" style="">
-        <li class="tab"><a class="active" href="#test1">Overview</a></li>
-        <li class="tab"><a  href="#test2">Opportunities</a></li>
-        <li class="tab"><a href="#test3">Activity Log</a></li>
-      </ul>
- <div id="test1" class="col s12">
- 
- 
- <h5>Summary</h5>
- <div class="field">
- <span class="field-label">Lead Source</span>
- <span class="field-val">{{ selectedData.leadSource || '-'}}</span>
- </div>
- <div class="field">
- <span class="field-label">Status</span>
- <span class="field-val">{{ selectedData.leadStatus || '-'}}</span>
- </div>
- <div class="field">
- <span class="field-label">Status Reason</span>
- <span class="field-val">{{ selectedData.statusReason || '-'}}</span>
- </div>
- 
- 
- 
- <h5>Contact</h5>
- <div class="field">
- <span class="field-label">Name</span>
- <span class="field-val">{{ ( selectedData.contact.firstName + ' ' + selectedData.contact.lastName )   || '-'}}</span>
- </div>
- <div class="field">
- <span class="field-label">Job Title</span>
- <span class="field-val">{{ selectedData.contact.jobTitle || '-'}}</span>
- </div>
- <div class="field">
- <span class="field-label">Email</span>
- <span class="field-val">{{ selectedData.contact.emailAddress || '-'}}</span>
- </div>
- <div class="field">
- <span class="field-label">Work Phone</span>
- <span class="field-val" >{{flattenList(selectedData.contact.phoneNumbers.business)}}</span>
- </div>
- <div class="field">
- <span class="field-label">Mobile Number</span>
- <span class="field-val">{{flattenList(selectedData.contact.phoneNumbers.mobile)}}</span>
- </div>
- 
- 
- 
- 
- <h5>Account</h5>
- <div class="field">
- <span class="field-label">Name</span>
- <span class="field-val">{{ selectedData.contact.account.name || '-'}}</span>
- </div>
- <div class="field">
- <span class="field-label">Website</span>
- <span class="field-val"><a href="{{ selectedData.contact.account.website || '-'}}">{{ selectedData.contact.account.website || '-'}}</a></span>
- </div>
- <div class="field">
- <span class="field-label">Address</span>
- <span class="field-val">{{ selectedData.contact.account.address || '-'}}</span>
- </div>
- 
- 
- 
- 
- 
- </div>
-    <div id="test2" class="col s12">
-    
-    <div data-ng-if="selectedData.opportunities.length == 0">
-    <i>No Opportunities Found</i>
-    </div>
-    <div data-ng-if="selectedData.opportunities.length > 0" data-ng-repeat="opp in selectedData.opportunities">
-    {{opp}}
-    </div>
-    
-    
-    </div>
-    <div id="test3" class="col s12">
-    
-    <div data-ng-if="selectedData.activityLog.length == 0">
-    <i>No Activities Found</i>
-    </div>
-    <div data-ng-if="selectedData.activityLog.length > 0" data-ng-repeat="activity in selectedData.activityLog">
-    {{activity}}
-    </div>
-    
-    
-    
-    
-    </div>
-
-</div>
-
-
-</div>
-
-
+<lead-details itemid="selectedId" ></lead-details>
 
 </div>
 
@@ -155,7 +47,13 @@
 
 
 
-
+<div id="lead-form-popup" class="modal">
+<div class="modal-content">
+      
+      <lead-form item="1"></lead-form>
+      
+                </div>
+</div>
 
 
 
