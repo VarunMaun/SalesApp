@@ -4,16 +4,8 @@ app.controller('leadsMasterController', [ '$scope','$location','$filter','leadSe
 	$scope.dataList = [];
 	$scope.selectedId = null;
 	$scope.query = '';
-	$scope.init = function () {		
 
-		$scope.dataList = leadService.fetchAll();
-		
-		if($scope.dataList.length>0){
-			$scope.dataList =	$filter('orderBy')($scope.dataList, 'topic')
-			$scope.selectedId = $scope.dataList[0].uuid;
-		}
-	}
-	$scope.init();
+
 
 	$scope.select = function($event,o){
 		$scope.selectedId = o.uuid;
@@ -21,7 +13,42 @@ app.controller('leadsMasterController', [ '$scope','$location','$filter','leadSe
 	$scope.checkActive = function (o) {		
 	     return (($scope.selectedId === o.uuid)?'active':'nope');
 	};
+	
 
+	$scope.sortOrder = '';
+	
+	$scope.sortData = function(sortField){
+		
+		$scope.sortOrder = sortField;
+		
+		if($scope.dataList.length>0){
+			$scope.dataList =	$filter('orderBy')($scope.dataList, sortField)
+			$scope.selectedId = $scope.dataList[0].uuid;
+		}
+	}
+	
+	
+	$scope.filterGroup = '';
+	
+	$scope.filterData = function(filterGroup){
+	
+		$scope.filterGroup = filterGroup;
+		
+		if('all'==filterGroup){
+			$scope.dataList = leadService.fetchAll();
+		}
+		else{
+			$scope.dataList = leadService.fetchByStatus(filterGroup);
+		}
+		
+		$scope.sortData($scope.sortOrder);
+				
+	}
+	
+
+
+	
+	
 	
 	
 	$scope.openModalFlag = false;
@@ -36,6 +63,17 @@ app.controller('leadsMasterController', [ '$scope','$location','$filter','leadSe
 		openModalFlag = true;
 	}
 	
+	$scope.init = function () {		
+
+		$scope.filterData('all');
+		
+		$scope.sortData('topic');
+		
+		
+		
+	}
+	
+	$scope.init();
 	
 	
 }]);

@@ -328,6 +328,119 @@ color: #07f;padding: 0px 10px;float: right;line-height: 40px;margin-right: 10px;
 cursor:pointer;
 }
 
+
+.sort-btn {
+color: #07f;padding: 0px 10px;float: right;line-height: 40px;font-size:25px;margin-right: 20px;margin-top: 3px;
+cursor:pointer;position:relative;
+}
+
+.data-sort-options{
+	position: absolute;
+	width:350px;
+	height:500px;
+	background: transparent;
+	display:none;
+	z-index: 999;
+    right: -50px;
+    top: 0px;
+    padding-top:20px;
+    overflow:auto;
+    border-radius:5px;
+    
+    -webkit-transition: all 0.2s;
+  -moz-transition: all 0.2s;
+  -ms-transition: all 0.2s;
+  -o-transition: all 0.2s;
+  transition: all 0.2s;
+}
+
+.data-sort-options > div{
+	background: #f1f1f1;
+	position: relative;
+	height:100%;
+	width:100%;
+	padding-top:5px;
+}
+
+.data-sort-options >div:before{
+	content:'';
+	position:absolute;
+	right:60px;
+	top:-11px;
+	display:block;
+	height:0px;
+	width:0px;
+	border-bottom:10px solid #ccc;
+	border-left:10px solid transparent;
+	border-right:10px solid transparent;
+}
+.data-sort-options >div:after{
+	content:'';
+	position:absolute;
+	right:60px;
+	top:-10px;
+	display:block;
+	height:0px;
+	width:0px;
+	border-bottom:10px solid #f1f1f1;
+	border-left:10px solid transparent;
+	border-right:10px solid transparent;
+}
+
+.data-sort-options h5{
+	font-size:14px;
+	text-align:center;
+	text-transform: uppercase;
+	margin:10px auto !important;
+	font-weight:600;
+	color:#777;
+}
+
+.data-sort-options ul{
+	background: #fff;
+	display:block;
+	position:relative;
+	margin:0px 10px !important;
+}
+
+
+
+.data-sort-options ul li{
+	display:block;
+}
+.data-sort-options ul li a{
+	display:block;
+	font-size:14px;
+	padding:0px 10px;	
+	color:#373d3f;
+	border-bottom:1px solid #f1f1f1;
+	position:relative;
+}
+
+.data-sort-options ul li a:before{
+content:'';
+margin-right:24px;
+	}
+	
+.data-sort-options ul li a.selected:before{
+	    content: "\f00c";
+	    color:green;
+	    font-family: FontAwesome;
+	    margin-right:10px;
+}
+.data-sort-options ul li a:hover:before{
+	    content: "\f00c";
+	    color:grey;
+	    font-family: FontAwesome;
+	    margin-right:10px;
+}
+
+
+.sort-btn:hover .data-sort-options{
+	display:block;
+}
+
+
 .col2-list{
 	margin:0px !important;
 }

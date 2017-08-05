@@ -17,7 +17,27 @@
 <a data-target="lead-form-popup" modal class="add-btn-plus" style="" open="openModalFlag" ng-click="openNewLeadPopup()" >+</a>
 
 
+<div id="data-sorter"  class="sort-btn"><i class="fa fa-sliders"></i>
+<div  class="data-sort-options">
+<div >
+<h5>Sort By</h5>
+<ul>
+      <li><a ng-click="sortData('topic')" ng-class="('topic'==sortOrder)?'selected':''">Topic</a></li>
+      <li><a ng-click="sortData('contact.account.name')"   ng-class="('contact.account.name'==sortOrder)?'selected':''">Account</a></li>
+</ul>
+<h5>Show</h5>
+<ul>
+      <li><a  ng-click="filterData('all')"    ng-class="('all'==filterGroup)?'selected':''" >All</a></li>
+      <li><a ng-click="filterData('new')"    ng-class="('new'==filterGroup)?'selected':''" >New</a></li>
+      <li><a ng-click="filterData('evaluation')"    ng-class="('evaluation'==filterGroup)?'selected':''" >Evaluation</a></li>
+      <li><a ng-click="filterData('qualified')"    ng-class="('qualified'==filterGroup)?'selected':''">Qualified</a></li>
+      <li><a ng-click="filterData('disqualified')"    ng-class="('disqualified'==filterGroup)?'selected':''">Disqualified</a></li>
+</ul>
 
+
+</div>
+</div>
+</div>
 
 </div>
 
@@ -56,7 +76,10 @@
 </div>
 
 
-
+<div id="data-sort-options">
+<a>Fresh</a><br />
+<a>Verified</a>
+</div>
 
 
 
