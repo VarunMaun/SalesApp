@@ -1,33 +1,37 @@
 <div>
 
-<a class="sideMenuToggleLink open hide-on-large-only"  ><i class="fa fa-bars"></i></a>
+<a class="sideMenuToggleLink open hide-on-extra-large-only"  ><i class="fa fa-bars"></i></a>
 
-<div class="side-bar hide-on-med-and-down"  >
+<div class="side-bar hide-on-large-med-and-down"  >
 
-<a class="sideMenuToggleLink close hide-on-large-only"    ><i class="fa fa-close"></i></a>
+<a class="sideMenuToggleLink close hide-on-extra-large-only"    ><i class="fa fa-close"></i></a>
 
 <h3>{{title}} </h3>
+<h5>Overview</h5>
+<ul class="pageLinks">
+<li><a href="#!map" data-ng-class="checkActive('/map')" ><i class="fa fa-globe" style="color:#fff;background:#61D2FE;"></i><span>Map View</span></a></li>
+<li><a href="#!pipeline" data-ng-class="checkActive('/pipeline')"  ><i class="fa fa-binoculars" style="color:#fff;background:#48DC6C"></i>Pipeline View</a></li>
+<li><a href="#!bids-summary" data-ng-class="checkActive('/bids-summary')"  ><i class="fa fa-list-ul" style="color:#fff;background:#6A71E6"></i>All Bids</a></li>
+
+</ul>
 
 <h5>Pipeline</h5>
-<ul>
-<li><a href="#!map" data-ng-class="checkActive('/map')" ><i class="fa fa-globe" style="color:#fff;background:#61D2FE;"></i><span>Map View</span></a></li>
+<ul class="pageLinks">
+
 <li><a href="#!leads" data-ng-class="checkActive('/leads')"  ><i class="fa fa-user" style="color:#fff;background: #FE4A65"></i>Leads</a></li>
 <li><a href="#!opportunities" data-ng-class="checkActive('/opportunities')"  ><i class="fa   fa-briefcase " style="color:#fff;background: #FFA500"></i>Opportunities</a></li>
 <li><a href="#!bids" data-ng-class="checkActive('/bids')"  ><i class="fa   fa-file-text " style="color:#fff;background: #F44336 !important;"></i>Bids</a></li>
-<li><a href="#!pipeline" data-ng-class="checkActive('/pipeline')"  ><i class="fa fa-binoculars" style="color:#fff;background:#48DC6C"></i>Active Bids</a></li>
-<li><a href="#!bids-summary" data-ng-class="checkActive('/bids-summary')"  ><i class="fa fa-list-ul" style="color:#fff;background:#6A71E6"></i>Bids Table</a></li>
+<li><a href="#!contracts" data-ng-class="checkActive('/contracts')"  ><i class="fa fa-handshake-o" style="color:#fff;background: #ff2d55;font-size: 12px;padding: 5px 3px;"></i><span>Contracts</span></a></li>
+<li><a href="#!orders" data-ng-class="checkActive('/orders')" ><i class="fa fa-file-text" style="color:#FFf;background:#27AE61;"></i>Orders</a></li>
 </ul>
 
-<h5>Orders</h5>
-<ul>
-<li><a href="#orders"><i class="fa fa-file-text" style="color:#FFf;background:#27AE61;"></i>Orders</a></li>
-<li><a href="#contracts" ><i class="fa fa-handshake-o" style="color:#fff;background: #ff2d55;font-size: 12px;padding: 5px 3px;"></i><span>Contracts</span></a></li>
-</ul>
 
-<h5>Misc</h5>
-<ul>
-<li><a href="#products" ><i class="fa fa-shopping-cart" style="color:#fff;background: #0192FF;"></i><span>Products</span></a></li>
-<li><a href="#favourites"><i class="fa fa-star" style="color:#FFA500;background:#FED201;"></i>Favorites</a></li>
+<h5>Master Data</h5>
+<ul  class="pageLinks">
+<li><a href="#!products" data-ng-class="checkActive('/products')"  ><i class="fa fa-shopping-cart" style="color:#fff;background: #0192FF;"></i><span>Products</span></a></li>
+<li><a href="#!contacts" data-ng-class="checkActive('/contacts')"  ><i class="fa fa-user" style="color:#fff;background: #27AE61;"></i><span>Contacts</span></a></li>
+<li><a href="#!accounts" data-ng-class="checkActive('/accounts')"  ><i class="fa  fa-industry" style="color:#fff;background: #7A217F;"></i><span>Accounts</span></a></li>
+<!-- <li><a href="#!favourites"><i class="fa fa-star" style="color:#FFA500;background:#FED201;"></i>Favorites</a></li> -->
 </ul>
 
 </div>

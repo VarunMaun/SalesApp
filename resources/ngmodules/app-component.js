@@ -35,6 +35,32 @@ app.directive('sideMenu', ['$location', function($location) {
 	    	  scope.checkActive = function (viewLocation) {		
 	    		     return ((viewLocation === $location.path())?'active':'nope');
 	    		};
+	    		
+	    		
+	    		angular.element(document).ready(function() {
+	    			$(document).ready(function(){
+	    				
+	    				$('.sideMenuToggleLink').click(function(){
+	    					if($('.side-bar').hasClass('slide-out-menu')){
+	    						$('.side-bar').removeClass('slide-out-menu');	
+	    					}
+	    					else{
+	    						$('.side-bar').addClass('slide-out-menu');
+	    					}
+	    				});
+	    				
+	    				$('.pageLinks a').click(function(){
+	    					if($('.side-bar').hasClass('slide-out-menu')){
+	    						$('.side-bar').removeClass('slide-out-menu');	
+	    					}
+	    				});
+	    				
+	    				
+	    				
+	    				
+	    				
+	    			});
+	    		});
 	      },
 	  	
 	  };
@@ -174,6 +200,33 @@ app.directive('productDetails', [ function() {
 	      replace: 'true',
 	      templateUrl : 'resources/ngcomponents/product-details.html',
 	      scope: { product: '=' },
+	      link: function(scope, elem, attrs) {
+	    	  scope.commonUtil = commonUtil;
+	      },
+	  	
+	  };
+	} ]);
+
+
+app.directive('contactDetails', [ function() {
+	  return {
+	      restrict: 'E',
+	      replace: 'true',
+	      templateUrl : 'resources/ngcomponents/contact-details.html',
+	      scope: { contact: '=' },
+	      link: function(scope, elem, attrs) {
+	    	  scope.commonUtil = commonUtil;
+	      },
+	  	
+	  };
+	} ]);
+
+app.directive('accountDetails', [ function() {
+	  return {
+	      restrict: 'E',
+	      replace: 'true',
+	      templateUrl : 'resources/ngcomponents/account-details.html',
+	      scope: { account: '=' },
 	      link: function(scope, elem, attrs) {
 	    	  scope.commonUtil = commonUtil;
 	      },

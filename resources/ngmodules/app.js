@@ -2,6 +2,10 @@ var app = angular.module("mcpq", ["ngRoute","ui.materialize","app.directives","a
 
 /*ROUTING RULES*/
 
+
+
+
+
 app.config(function($routeProvider) {
     $routeProvider
     .when("/map", {
@@ -25,5 +29,29 @@ app.config(function($routeProvider) {
     .when("/bids-summary", {
     	 templateUrl : 'resources/ngpages/bids-table.html',
     })
+    .when("/products", {
+    	 templateUrl : 'resources/ngpages/products.html',
+    	 controller  : 'productMasterController'
+    })
+    .when("/orders", {
+    	templateUrl : 'resources/ngpages/orders.html',
+    })
+    .when("/contracts", {
+    	templateUrl : 'resources/ngpages/contracts.html',
+    })
+    .when("/contacts", {
+    	 templateUrl : 'resources/ngpages/contacts.html',
+    	 controller  : 'contactMasterController'
+    })
+    .when("/accounts", {
+    	 templateUrl : 'resources/ngpages/accounts.html',
+    	 controller  : 'accountMasterController'
+    })
+    
+    
+    
+    
+    
+    
    .otherwise({templateUrl : 'resources/ngpages/dummy.html',}) 
 });

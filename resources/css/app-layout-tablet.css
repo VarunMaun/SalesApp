@@ -1,5 +1,22 @@
-@media screen and (max-width:992px) {
 
+
+@media screen and (min-width:1201px) {
+.hide-on-extra-large-only{
+	display:none !important;
+}
+
+	
+}
+
+
+
+
+@media screen and (max-width:1200px) {
+
+.hide-on-large-med-and-down{
+	display:none !important;
+}	
+	
 	
 .content-wrapper{
 	left:0px !important;

@@ -23,6 +23,9 @@
   src: local("Segoe UI Bold"), local("Open Sans Bold"), local("OpenSans-Bold"), url(https://themes.googleusercontent.com/static/fonts/opensans/v8/k3k702ZOKiLJc3WVjuplzJ1r3JsPcQLi8jytr04NNhU.woff) format('woff');
 }
 
+
+
+
 ::-webkit-scrollbar {
     width: 6px;
     background-color: #F5F5F5;
@@ -88,6 +91,7 @@ body{
     color: #fff;
     line-height: 30px;
     border-radius: 5px;
+    cursor: pointer;
 }
 
 .sideMenuToggleLink.close{
@@ -106,7 +110,7 @@ left:200px;
 	border-right:1px solid #ccc;
 }
 
-.side-bar.hide-on-med-and-down.slide-out-menu{
+.side-bar.slide-out-menu{
 	display:block !important;
 	position:fixed;
 	top:0px;
@@ -574,6 +578,68 @@ background-image: none;
 }
 
 
+.col2-list.accountlist li a{
+	background-image: none;
+	position: relative;
+}
+
+.col2-list.accountlist a.active{
+background-color: #4E87C0;	
+background-image: none;
+}
+
+.col2-list.accountlist li a:before{
+	    content: "\f275";
+    font-family: FontAwesome;
+    font-size: 24px;
+    color: #aaa;
+    position: absolute;
+    top: 10px;
+    left: 15px;
+}
+
+.col2-list.accountlist a.active:before{
+    content: "\f275";
+    font-family: FontAwesome;
+    font-size: 24px;
+    color: #fff;
+    position: absolute;
+    top: 10px;
+    left: 15px;
+}
+
+
+
+
+.col2-list.contactlist li a{
+	background-image: none;
+	position: relative;
+}
+
+.col2-list.contactlist a.active{
+background-color: #4E87C0;	
+background-image: none;
+}
+
+.col2-list.contactlist li a:before{
+	    content: "\f007";
+    font-family: FontAwesome;
+    font-size: 24px;
+    color: #aaa;
+    position: absolute;
+    top: 10px;
+    left: 15px;
+}
+
+.col2-list.contactlist a.active:before{
+    content: "\f007";
+    font-family: FontAwesome;
+    font-size: 24px;
+    color: #fff;
+    position: absolute;
+    top: 10px;
+    left: 15px;
+}
 
 
 .col2-list.bidlist li a{
@@ -1459,6 +1525,9 @@ color:#fff;
     text-align: center;
     line-height: 30px;
     cursor: pointer;
+    z-index:9;
+    
+    
 }
 
 .address-wrap .address-title{
