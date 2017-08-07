@@ -528,6 +528,85 @@ margin-right:24px;
 	font-weight:400;
 }
 
+.col2-list.leadlist li a{
+	background-image: url('img/icons/account.png') ;
+	background-repeat: no-repeat;
+	background-position: 10px center;
+}
+
+.col2-list.leadlist a.active{
+background-color: #4E87C0;	
+background-image: url('img/icons/account-w.png') ;
+	background-repeat: no-repeat;
+}
+
+
+
+
+.col2-list.productlist li a{
+	background-image: none;
+	position: relative;
+}
+
+.col2-list.productlist a.active{
+background-color: #4E87C0;	
+background-image: none;
+}
+
+.col2-list.productlist li a:before{
+	    content: "\f02c";
+    font-family: FontAwesome;
+    font-size: 24px;
+    color: #aaa;
+    position: absolute;
+    top: 10px;
+    left: 15px;
+}
+
+.col2-list.productlist a.active:before{
+    content: "\f02c";
+    font-family: FontAwesome;
+    font-size: 24px;
+    color: #fff;
+    position: absolute;
+    top: 10px;
+    left: 15px;
+}
+
+
+
+
+.col2-list.bidlist li a{
+	background-image: none;
+	position: relative;
+}
+
+.col2-list.bidlist a.active{
+background-color: #4E87C0;	
+background-image: none;
+}
+
+.col2-list.bidlist li a:before{
+	    content: "\f15c";
+    font-family: FontAwesome;
+    font-size: 24px;
+    color: #aaa;
+    position: absolute;
+    top: 10px;
+    left: 15px;
+}
+
+.col2-list.bidlist a.active:before{
+    content: "\f15c";
+    font-family: FontAwesome;
+    font-size: 24px;
+    color: #fff;
+    position: absolute;
+    top: 10px;
+    left: 15px;
+}
+
+
 .col2-list li a{
 	background-image: url('img/icons/account.png') ;
 	background-repeat: no-repeat;
@@ -538,7 +617,6 @@ margin-right:24px;
 background-color: #4E87C0;	
 background-image: url('img/icons/account-w.png') ;
 	background-repeat: no-repeat;
-
 }
 
 
@@ -1315,4 +1393,73 @@ form.appform label{
 form.appform label:after{
 content:':';
 	}
+
+
+
+.bid-table{
+	width:100%;
+	margin:10px 0px;
+	border:1px solid #ccc;
+}
+
+.bid-table td{
+	vertical-align: top;
+	padding:3px;	
+	font-size:12px;
+	text-transform: capitalize;;
+}
+.bid-table tr{
+	border-bottom:1px solid #ccc;
+}
+
+.bid-table tr:nth-child(odd){
+	background: #f8f8f8;
+}
+
+.bid-table tr.location-row{
+	background: #999;
+	color:#373d3f;
+	font-weight:600;
+}
+
+.bid-table tr.location-row td{
+padding:10px 3px;
+color:#fff;
+
+	}
+
+
+.address-wrap{
+	margin:10px 20px;
+	border:1px solid #ccc;
+	padding:10px;	
+	position: relative;
+	text-transform: uppercase;
+}
+.delete-link{
+	    position: absolute;
+    top: 0px;
+    right: 0px;
+    font-size: 20px;
+    display: block;
+    height: 30px;
+    width: 30px;
+    text-align: center;
+    line-height: 30px;
+    cursor: pointer;
+}
+
+.address-wrap .address-title{
+	font-weight:600;
+}
+
+.address-wrap > div{
+	margin-bottom:10px;
+}
+
+.addSelectedProductTable td{
+	vertical-align: middle;
+}
+
+
 

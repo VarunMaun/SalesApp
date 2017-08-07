@@ -1,0 +1,266 @@
+<div>
+
+<div style="position: fixed;top:0px;left:0px;right:0px;bottom:0px;background: #fff;z-index: 999">
+<div style="position: relative;height:100%;width:100%;">
+<div style="position: absolute;top:0px;left:0px;right:0px;bottom:50px;">
+
+<div class="lead-details" style="position:relative;height:100%;width:100%;">
+<div class="header">
+<div class="title">Configure Bid </div>
+
+</div>
+<div class="details" style="position:absolute;top:50px;bottom:0px;left:0px;right:0px;overflow: auto;">
+<div style="position: relative;height:100%;width:100%;">
+
+<ul class="tabs" style="">
+        <li class="tab"><a class="active" href="#bidConfigStage1">Site Configuration</a></li>
+        <li class="tab"><a  href="#bidConfigStage2">Product Selection</a></li>
+        <li class="tab"><a href="#bidConfigStage3">Discounts and Tax</a></li>
+      </ul>
+ 
+ <div style="position: absolute;top:50px;left:0px;right:0px;bottom:0px;overflow: auto;">
+ <div style="height:100%;width:100%;position: relative;">
+ <div id="bidConfigStage1" class="col s12">
+ 
+ <div class="row">
+ <div class="col s12 m6">
+ 
+ <form  class="appform">
+ <h5>New Site Form</h5>
+ <div style="background: #f5f5f5;">
+ <div class="row">
+ 
+ <div class="col s12 l6">
+ 
+ <div >
+ <label >Nickname</label>
+ <input    ng-model="newAddress.nickname"   type="text" >
+          
+ </div>
+
+
+<div >
+ <label >Address Line 1</label>
+ <input    ng-model="newAddress.line1"   type="text" >
+          
+ </div>
+
+<div >
+ <label >Address Line 2</label>
+ <input    ng-model="newAddress.line2"   type="text" >
+          
+ </div>
+ 
+ <div >
+ <label >Address Line 3</label>
+ <input    ng-model="newAddress.line3"   type="text" >
+          
+ </div>
+ 
+ 
+ </div>
+ 
+ 
+ <div class="col s12 l6">
+ <div >
+ <label >Pincode</label>
+ <input    ng-model="newAddress.pinCode"   type="text" >
+          
+ </div>
+ 
+ <div >
+ <label >City</label>
+ <input    ng-model="newAddress.city"   type="text" >
+          
+ </div>
+ 
+ 
+ <div >
+ <label >State</label>
+ <input    ng-model="newAddress.state"   type="text" >
+          
+ </div>
+
+<div >
+ <label >Country</label>
+ <input    ng-model="newAddress.country"   type="text" >
+          
+ </div>
+ 
+ 
+ 
+ </div>
+ 
+ 
+ </div>
+ 
+  
+ 
+<div style="padding:20px;text-align: right;">
+
+<a class="btn blue" ng-click="saveNewAddress()" >Save Site</a>
+</div>
+ </div>
+ 
+ 
+ </form>
+
+ 
+ </div>
+ <div class="col s12 m6">
+ <h5>Saved Sites:</h5>
+ 
+ <div data-ng-if="addressList.length == 0">
+    <i>No Sites Configured</i>
+    </div>
+    
+ 
+ 
+ <div ng-repeat="add in addressList track by $index">
+ 
+ <div class="address-wrap">
+ <div class="address-title">{{add.nickname}}</div>
+ <div>
+ {{add.line1}} {{add.line2}} {{add.line3}} 
+ </div>
+ <div>
+ {{add.pinCode}} {{add.city}} {{add.state}} {{add.country}} 
+ </div>
+ 
+ <a class="delete-link"   confirmed-click="deleteAddress(add)"  ng-confirm-click="Delete Site?"><i class="fa fa-close red-text"></i></a>
+ 
+ </div>
+ 
+ </div>
+ 
+ </div>
+ </div>
+ 
+ 
+ 
+ 
+ 
+</div>
+
+<div id="bidConfigStage2" class="col s12"  style="height:100%;">
+<div style="height:100%;width:100%;position: relative;">
+<div class="row" style="height:100%;">
+<div class="col s12 m6"  style="height:100%;">
+<div style="height:100%;width:100%;position: relative;">
+<h5>Available Products:</h5>
+<div style="background: #e0e0e0;padding:10px;">
+<input type="text" placeholder="Search" class="search-box-1" data-ng-model="queryAvailProducts"  />
+</div>
+
+<div id="available-product-list-wrap" style="position:absolute;top:113px;left:0px;right:0px;bottom:0px;;overflow: auto;">
+
+
+<ul class="col2-list productlist" ng-repeat="prod in availabLeProductList | filter:queryAvailProducts" >
+
+<li><a ng-click="selectProduct(prod)"  data-uuid="{{prod.uuid}}"><span class="title">{{prod.productName}}</span></a></li>
+
+
+</ul>
+
+</div>
+<div id="selected-product-details" style="position:absolute;top:0px;left:0px;right:0px;bottom:0px;;overflow: auto;display:none;background: #fff;border:1px solid #e0e0e0;border-radius:5px;">
+<div style="position:relative;height:100%;width:100%;">
+<div style="background: #e5f0fb;height:50px;"><h5 style="margin: 15px 10px;">Product Details</h5></div>
+
+<a class="closeDetails delete-link"><i class="fa fa-close red-text"></i></a>
+  
+<div style="position: absolute;top:50px;right:0px;left:0px;bottom:150px;background: #fff;overflow: auto;">
+
+<product-details product="selectedProduct"></product-details>
+</div>
+
+
+<div style="position: absolute;height:150px;bottom:0px;left:0px;right:0px;background: #f1f1f1;">
+
+<table class="addSelectedProductTable">
+<tr>
+<td>
+Add Product:
+</td>
+<td style="">
+<select  multiple="multiple"  ng-options="(address.nickname) for address in addressList track by address.uuid" ng-model="selectedProductAddSites">
+</select>
+</td>
+<td>
+<a class="btn blue closeDetails" ng-click="addProductToSites()">Add</a>
+</td>
+</tr>
+</table>
+  
+
+
+
+
+</div>
+
+</div>
+</div>
+
+
+</div>
+
+</div>
+
+<div class="col s12 m6">
+<h5>Selected Products:</h5>
+
+<table class="bid-table" ng-repeat="address in addressList track by $index">
+ <tr class="location-row" >
+ <td colspan="8">
+ {{$index +1}}. {{address.nickname}} - {{address.line1 + ' ' + address.line2 + ' ' + address.line3 + ' ' + address.city + ' ' + address.pinCode  }}
+ </td>
+ </tr>
+ </table>
+ 
+
+</div>
+
+</div>
+
+
+
+
+
+</div>
+
+</div>
+<div id="bidConfigStage3" class="col s12">
+Discount Config
+</div>
+
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+
+
+
+</div>
+
+<div style="position: absolute;bottom:0px;left:0px;right:0px;height:50px;background: yellow;">
+<div style="height:100%;width:100%;text-align: right;">
+<a class="btn blue" ng-click="saveBidDetails()">Save Bid</a>
+<a class="btn grey" ng-click="closeBidConfigPopup()">Close</a>
+
+
+</div>
+</div>
+
+
+</div>
+</div>
+
+
+
+
+
+
+</div>

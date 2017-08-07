@@ -12,6 +12,10 @@ app.config(function($routeProvider) {
    	 templateUrl : 'resources/ngpages/leads.html',
    	controller  : 'leadsMasterController'
     })
+    .when("/bids", {
+   	 templateUrl : 'resources/ngpages/bids.html',
+   	controller  : 'bidsMasterController'
+    })
     .when("/opportunities", {
     	 templateUrl : 'resources/ngpages/opportunities.html',
     })
@@ -19,7 +23,7 @@ app.config(function($routeProvider) {
     	 templateUrl : 'resources/ngpages/pipeline-summary.html',
     })
     .when("/bids-summary", {
-    	 templateUrl : 'resources/ngpages/bids.html',
+    	 templateUrl : 'resources/ngpages/bids-table.html',
     })
    .otherwise({templateUrl : 'resources/ngpages/dummy.html',}) 
 });

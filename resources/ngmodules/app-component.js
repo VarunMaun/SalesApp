@@ -1,6 +1,25 @@
 var app = angular.module("app.directives", ["app.service"]);
 
 
+
+app.directive('ngConfirmClick', [
+                                 function() {
+                                     return {
+                                         link: function (scope, element, attr) {
+                                             var msg = attr.ngConfirmClick || "Are you sure?";
+                                             var clickAction = attr.confirmedClick;
+                                             element.bind('click', function (event) {
+                                                 if (window.confirm(msg)) {
+                                                     scope.$eval(clickAction)
+                                                 }
+                                             });
+                                         }
+                                     };
+                             }]);
+
+
+
+
 /*DIRECTIVES*/
 
 
@@ -119,3 +138,168 @@ app.directive('leadForm', ['leadService','contactService','accountService','$roo
 
 
 
+app.directive('bidDetails', ['bidService', function(bidService) {
+	  return {
+	      restrict: 'E',
+	      replace: 'true',
+	      templateUrl : 'resources/ngcomponents/bid-details.html',
+	      link: function(scope, elem, attrs) {
+	    	  scope.commonUtil = commonUtil;
+	    	  scope.activeBid = bidService.fetchById(1);
+	    	  console.log("Active Bid:");
+	    	  console.log(scope.activeBid);
+	    	  
+	    	  
+	    	  
+	    		scope.bidConfigPopupFlag = false;
+	    		scope.openBigConfig = function(){
+	    			scope.bidConfigPopupFlag = true;
+	    		}
+	    		
+	    		
+	    		scope.$on('closeBidConfigPopup', function(evt, data) {
+	    		 	scope.bidConfigPopupFlag = false;
+	    		  });
+	    	  
+	      },
+	  	
+	  };
+	}]);
+
+
+
+app.directive('productDetails', [ function() {
+	  return {
+	      restrict: 'E',
+	      replace: 'true',
+	      templateUrl : 'resources/ngcomponents/product-details.html',
+	      scope: { product: '=' },
+	      link: function(scope, elem, attrs) {
+	    	  scope.commonUtil = commonUtil;
+	      },
+	  	
+	  };
+	} ]);
+
+
+app.directive('bidConfig', ['bidService','productService','$rootScope', function(bidService,productService,$rootScope) {
+	  return {
+	      restrict: 'E',
+	      replace: 'true',
+	      templateUrl : 'resources/ngcomponents/bid-config.html',
+	      link: function(scope, elem, attrs) {
+	    	  scope.commonUtil = commonUtil;
+	    	  scope.activeBid = bidService.fetchById(1);
+	    	  console.log("Active Bid:");
+	    	  console.log(scope.activeBid);
+	    	  
+	    	  
+	    	  scope.saveBidDetails = function(){
+	    		  $rootScope.$broadcast('updateBid', {});
+	    		  $rootScope.$broadcast('closeBidConfigPopup', {});
+	    	  }
+	    	  
+	    	  scope.closeBidConfigPopup = function(){
+	    		  $rootScope.$broadcast('closeBidConfigPopup', {});
+	    	  }
+	    	  
+	    	  angular.element(document).ready(function() {
+	    			 $('ul.tabs').tabs();
+	    			 $('select').material_select();
+	    			 
+	    			 $('#available-product-list-wrap a').click(function(){
+	    				 $('#available-product-list-wrap').hide(); 
+	    				 $('#selected-product-details').show();
+	    			 });
+	    			 
+	    			 $('#selected-product-details .closeDetails').click(function(){
+	    				 $('#available-product-list-wrap').show(); 
+	    				 $('#selected-product-details').hide();
+	    			 });
+	    			 
+	    			 
+	    	    });
+	    	  
+	    	  
+	    	  
+	    	  
+	    	  
+	    	  /*Address Config*/
+	    	  
+	    	  
+	    	  
+	    	  
+	    	  scope.addressList = [];
+	    	  scope.newAddress = Address();
+	    	  
+	    	  scope.addressList.push({"city":"Gandhinagar",
+	    		  "country":"India",
+	    		  "district":"",
+	    		  "line1":"385/5",
+	    		  "line2":"Sector 29",
+	    		  "line3":"",
+	    		  "nickname":"Home Address",
+	    		  "pinCode":"382030",
+	    		  "state":"Gujarat",
+	    		  "uuid":"91c3a54d-eee0-6208-ff55-ab2a0cfed1e2"});
+	    	  
+	    	  scope.addressList.push({"city":"Gandhinagar",
+	    		  "country":"India",
+	    		  "district":"",
+	    		  "line1":"Garima Park",
+	    		  "line2":"Kudasan",
+	    		  "line3":"DAIICT Road",
+	    		  "nickname":"Office Address",
+	    		  "pinCode":"382009",
+	    		  "state":"Gujarat",
+	    		  "uuid":"91c3a54d-eee0-6208-ff66-ab2a0cfed1e2"});
+	    	  
+	    	  
+	    	  
+	    	  scope.saveNewAddress = function(){
+	    		  scope.newAddress.uuid = commonUtil.guid();
+	    		  scope.addressList.push(scope.newAddress);
+	    		  scope.newAddress = Address();
+	    	  }
+	    	  
+	    	  scope.deleteAddress = function(addressToDelete){
+	    		  var indexToDelete = -1;
+	    		  for(var iter=0;iter<scope.addressList.length;iter++){
+	    			  if(addressToDelete.uuid==scope.addressList[iter].uuid){
+	    				indexToDelete = iter;
+	    			  }
+	    		  }
+	    		  scope.addressList.splice(indexToDelete, 1);
+	    		  scope.$apply(); 
+	    	  }
+	    	  
+	    	  
+	    	  
+	    	  /*Product Config*/
+	    	  
+	    	  scope.queryAvailProducts = '';
+	    	  scope.availabLeProductList = productService.fetchAll();
+	    	  
+	    	  scope.selectedProduct = scope.availabLeProductList[0];
+	    	  scope.selectedProductAddSites = null;
+	    	  
+	    	  
+	    	  scope.selectProduct = function(prod){
+	    		  scope.selectedProduct =  prod; 
+	    	  }
+	    	  
+	    	  scope.addProductToSites = function(){
+	    		  console.log('Adding product to sites:');
+	    		  console.log('Selected Product:');
+	    		  console.log(scope.selectedProduct);
+	    		  console.log('Selected Sites:');
+	    		  console.log(scope.selectedProductAddSites);
+	    		  
+	    		  
+	    		  
+	    	  }
+	    	  
+	      },
+	  	
+	  };
+	}]);

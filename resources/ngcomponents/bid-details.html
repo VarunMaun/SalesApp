@@ -1,0 +1,74 @@
+<div class="lead-details" style="position:relative;height:100%;width:100%;">
+<div class="header">
+<div class="title">{{activeBid.topic}} </div>
+
+</div>
+<div class="details" style="position:absolute;top:50px;bottom:80px;left:0px;right:0px;overflow: auto;">
+<ul class="tabs" style="">
+        <li class="tab"><a class="active" href="#test1">Overview</a></li>
+        <li class="tab"><a  href="#test2">Documents</a></li>
+        <li class="tab"><a href="#test3">Activity Log</a></li>
+        <li class="tab"><a href="#test4">People</a></li>
+      </ul>
+ <div id="test1" class="col s12">
+ 
+ <table class="bid-table" ng-repeat="site in activeBid.sites track by $index">
+ <tr class="location-row" >
+ <td colspan="8">
+ {{$index +1}}. {{site.address.nickname}} - {{site.address.line1 + ' ' + site.address.line2 + ' ' + site.address.line3 + ' ' + site.address.city + ' ' + site.address.pinCode  }}
+ </td>
+ </tr>
+ <tr ng-repeat="prod in site.products track by  $index">
+ <td> {{$parent.$index +1}}.{{$index + 1}}</td>
+ <td > {{prod.productName}} </td>
+ <td > {{prod.productGroup}} </td>
+ <td >{{prod.productConfiguration}} </td>
+ <td >RC - {{prod.productPriceRecurring}} <BR />
+ NRC -  {{prod.productPriceNonRecurring}}</td>
+ <td > Quantity</td>
+ <td>Discount</td>
+ <td>Total</td>
+ </tr>
+ </table>
+ 
+ 
+ 
+ </div>
+    <div id="test2" class="col s12">
+   
+   
+    <i>No Documents Found</i>
+    
+    
+    
+    </div>
+    <div id="test3" class="col s12">
+    
+    <i>No Activities Found</i>
+    
+    
+    </div>
+    
+    
+    <div id="test4" class="col s12">
+    
+    <i>No People Found</i>
+    
+    
+    </div>
+
+</div>
+
+<div class="action-tray" style="">
+
+<a ng-click="openBigConfig()"  class="btn blue darken-4" style="font-size:14px;max-width:45%;overflow: hidden;"><i class="fa fa-file-text" style="margin-right:10px;"></i>Edit Bid</a>
+<a class="btn blue-grey darken-4" style="font-size:14px;max-width:45%;overflow: hidden;"><i class="fa fa-edit" style="margin-right:10px;"></i>New Activity</a>
+</div>
+
+
+<div ng-if="bidConfigPopupFlag">
+<bid-config></bid-config>
+</div>
+
+
+</div>

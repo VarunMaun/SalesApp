@@ -48,7 +48,7 @@
 <input type="text" placeholder="Search" class="search-box-1" data-ng-model="query"  />
 </div>
 <div style="position:absolute;top:104px;left:0px;right:0px;bottom:0px;overflow: auto;">
-<ul class="col2-list" data-ng-repeat="o in dataList | filter:query  ">
+<ul class="col2-list leadlist" data-ng-repeat="o in dataList | filter:query  ">
 
 <li><a  data-ng-class="checkActive(o)"  data-ng-click="select($event,o)" data-uuid="{{o.uuid}}"><span class="title">{{o.topic}}</span><span class="desc">{{o.contact.account.name}}</span></a></li>
 
