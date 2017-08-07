@@ -171,32 +171,6 @@ app.factory('bidService', function() {
 		o.sites[0] = site1;
 		
 		
-		
-		var site2=  {};
-		site2.uuid="5";
-		site2.address={};
-		site2.address.line1 = '385/5';
-		site2.address.line2 = 'Sector 29';
-		site2.address.city = 'Gandhinanagar';
-		site2.address.pinCode = '382030';
-		site2.address.nickname = 'Home Address';
-		
-		site2.products = [];
-		for(var iter=40;iter<50;iter++){
-			var op = MOCK_PRODUCTS[iter];
-			var p = {};
-			p.uuid = op.uuid;
-			p.productName = op.productName;
-			p.productGroup = op.productGroup;
-			p.productConfiguration = 'Standard';
-			p.productPriceRecurring = op.costRecurring;
-			p.productPriceNonRecurring = op.costNonRecurring;
-			
-			site2.products[iter-40]=p;			
-		}
-		
-		
-		o.sites[1] = site2;
 		return o;
 		
 	}
@@ -212,6 +186,97 @@ app.factory('productService', function() {
 
 	service.fetchAll = function() {
 		return MOCK_PRODUCTS.slice(0, 15);;
+	}
+
+	return service;
+});
+
+
+
+
+app.factory('pipelineService', function() {
+	var service = {};
+
+	service.fetchAll = function() {
+		return MOCK_PIPELINE_BIDS.slice(0, 16);;
+	}
+
+	return service;
+});
+
+
+app.factory('opportunityService', function() {
+	var service = {};
+
+	service.fetchAll = function() {
+		return MOCK_OPPORTUNITIES.slice(0, 20);;
+	}
+
+	return service;
+});
+
+
+
+app.factory('worklistService', function() {
+	var service = {};
+
+	service.fetchAll = function() {
+		return [
+				{
+					title: 'All Day Event',
+					start: '2017-05-01'
+				},
+				{
+					title: 'Long Event',
+					start: '2017-05-07',
+					end: '2017-05-10'
+				},
+				{
+					id: 999,
+					title: 'Repeating Event',
+					start: '2017-05-09T16:00:00'
+				},
+				{
+					id: 999,
+					title: 'Repeating Event',
+					start: '2017-05-16T16:00:00'
+				},
+				{
+					title: 'Conference',
+					start: '2017-05-11',
+					end: '2017-05-13'
+				},
+				{
+					title: 'Meeting',
+					start: '2017-05-12T10:30:00',
+					end: '2017-05-12T12:30:00'
+				},
+				{
+					title: 'Lunch',
+					start: '2017-05-12T12:00:00'
+				},
+				{
+					title: 'Meeting',
+					start: '2017-05-12T14:30:00'
+				},
+				{
+					title: 'Happy Hour',
+					start: '2017-05-12T17:30:00'
+				},
+				{
+					title: 'Dinner',
+					start: '2017-05-12T20:00:00'
+				},
+				{
+					title: 'Birthday Party',
+					start: '2017-05-13T07:00:00'
+				},
+				{
+					title: 'Click for Google',
+					url: 'http://google.com/',
+					start: '2017-05-28'
+				}
+			];
 	}
 
 	return service;

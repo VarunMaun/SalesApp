@@ -13,7 +13,7 @@
 
 
 
-<h5 style="display:block;float:right;margin-right:10px;">Total : 500</h5>
+<h5 style="display:block;float:right;margin-right:10px;">Total : ${{ commonUtil.ftmNumber( sum['offerability']+sum['solutioning']+sum['pricing']+sum['proposal'])}}</h5>
 
 </div>
 </div>
@@ -22,118 +22,86 @@
 
 
 <div class="content-body " style="background: #f1f1f1;" >
-
-<div class="row" style="margin-top:10px;">
-<div class="col s12" id="pipelineTable">
-<div class="row flat-row">
-<div class="col s3 offerability-summary">
-<div class="step-header">
+<div style="height:100%;width:100%;">
+<div class="row" style="margin-top:10px;height:100%;">
+<div class="col s12" id="pipelineTable" style="height:100%;">
+<div class="row flat-row" style="height:100%;">
+<div class="col s3 offerability-summary" style="height:100%;position: relative;">
+<div class="step-header" >
 <div class="step-arrow curve-left">
-<a href="#pipelinelist?col=offerability">
-<span class="title">Offerability</span><span class="count">(2)</span>
+<a >
+<span class="title">Offerability</span><span class="count">({{bids['offerability'].length}})</span>
 </a>
 </div>
-<span class="est-revenue">$122321</span>
+<span class="est-revenue">${{commonUtil.ftmNumber(sum['offerability'])}}</span>
 </div>
 
-<div class="step-body">
-<div class="op-card">
-<div class="title">Falanana balana</div>
-<div class="est-revenue">$1212321</div>
-</div>
-<div class="op-card">
-<div class="title">Falanana balana</div>
-<div class="est-revenue">$1212321</div>
-</div>
-<div class="op-card">
-<div class="title">Falanana balana</div>
-<div class="est-revenue">$1212321</div>
-</div>
-<div class="op-card">
-<div class="title">Falanana balana</div>
-<div class="est-revenue">$1212321</div>
-</div>
-<div class="op-card">
-<div class="title">Falanana balana</div>
-<div class="est-revenue">$1212321</div>
+<div class="step-body" style="position: absolute;top:80px;left:0px;right:0px;bottom:0px;overflow: auto;">
+<div class="op-card" ng-repeat="bid in bids['offerability']">
+<div class="account">{{bid.account}}</div>
+<div class="title">{{bid.topic}}</div>
+<div class="est-revenue">${{bid.value}}</div>
 </div>
 </div>
 
 </div>
 
-<div class="col s3 solutioning-summary">
+<div class="col s3 solutioning-summary" style="height:100%;position: relative;">
 <div class="step-header">
 <div class="step-arrow left-end">
-<a href="#pipelinelist?col=solutioning">
-<span class="title">Solutioning</span><span class="count">(4)</span>
+<a >
+<span class="title">Solutioning</span><span class="count">({{bids['solutioning'].length}})</span>
 </a></div>
-<span class="est-revenue">$122321</span>
+<span class="est-revenue">${{commonUtil.ftmNumber(sum['solutioning'])}}</span>
 </div>
-<div class="step-body">
-<div class="op-card">
-<div class="title">Falanana balana</div>
-<div class="est-revenue">$1212321</div>
+<div class="step-body"  style="position: absolute;top:80px;left:0px;right:0px;bottom:0px;overflow: auto;">
+<div class="op-card" ng-repeat="bid in bids['solutioning']">
+<div class="account">{{bid.account}}</div>
+<div class="title">{{bid.topic}}</div>
+<div class="est-revenue">${{bid.value}}</div>
 </div>
-<div class="op-card">
-<div class="title">Falanana balana</div>
-<div class="est-revenue">$1212321</div>
-</div>
+
 </div>
 </div>
 
-<div class="col s3 pricing-summary">
+<div class="col s3 pricing-summary"  style="height:100%;position: relative;">
 <div class="step-header">
 <div class="step-arrow left-end">
-<a href="#pipelinelist?col=pricing">
-<span class="title">Pricing</span><span class="count">(5)</span>
+<a >
+<span class="title">Pricing</span><span class="count">({{bids['pricing'].length}})</span>
 </a>
 </div>
-<span class="est-revenue">$122321</span>
+<span class="est-revenue">${{commonUtil.ftmNumber(sum['pricing'])}}</span>
 </div>
-<div class="step-body">
-<div class="op-card">
-<div class="title">Falanana balana</div>
-<div class="est-revenue">$1212321</div>
+<div class="step-body"  style="position: absolute;top:80px;left:0px;right:0px;bottom:0px;overflow: auto;">
+
+<div class="op-card" ng-repeat="bid in bids['pricing']">
+<div class="account">{{bid.account}}</div>
+<div class="title">{{bid.topic}}</div>
+<div class="est-revenue">${{bid.value}}</div>
 </div>
-<div class="op-card">
-<div class="title">Falanana balana</div>
-<div class="est-revenue">$1212321</div>
-</div>
+
 </div>
 </div>
 
-<div class="col s3 proposal-summary">
+<div class="col s3 proposal-summary"  style="height:100%;position: relative;">
 <div class="step-header">
 <div class="step-arrow left-end curve-right">
-<a href="#pipelinelist?col=proposal">
-<span class="title">Proposal</span><span class="count">(5)</span>
+<a >
+<span class="title">Proposal</span><span class="count">({{bids['proposal'].length}})</span>
 </a>
 </div>
-<span class="est-revenue">$122321</span>
+<span class="est-revenue">${{commonUtil.ftmNumber(sum['proposal'])}}</span>
 </div>
-<div class="step-body">
-<div class="op-card">
-<div class="title">Falanana balana</div>
-<div class="est-revenue">$1212321</div>
+<div class="step-body"  style="position: absolute;top:80px;left:0px;right:0px;bottom:0px;overflow: auto;">
+
+<div class="op-card" ng-repeat="bid in bids['proposal']">
+<div class="account">{{bid.account}}</div>
+<div class="title">{{bid.topic}}</div>
+<div class="est-revenue">${{bid.value}}</div>
 </div>
-<div class="op-card">
-<div class="title">Falanana balana</div>
-<div class="est-revenue">$1212321</div>
-</div><div class="op-card">
-<div class="title">Falanana balana</div>
-<div class="est-revenue">$1212321</div>
-</div>
-<div class="op-card">
-<div class="title">Falanana balana</div>
-<div class="est-revenue">$1212321</div>
-</div><div class="op-card">
-<div class="title">Falanana balana</div>
-<div class="est-revenue">$1212321</div>
-</div>
-<div class="op-card">
-<div class="title">Falanana balana</div>
-<div class="est-revenue">$1212321</div>
-</div>
+
+
 </div>
 </div>
 
@@ -152,7 +120,7 @@
 
 </div>
 
-
+</div>
 </div>
 
 
@@ -164,17 +132,5 @@
 
 
 
-<script type="text/javascript">
-
-$(document).ready(function(){
-
-	
-$('.op-card').click(function(){
-	window.location.href = 'bid360.html';
-});
-	
-});
-
-</script>
 
 

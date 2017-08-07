@@ -17,6 +17,28 @@
 <span class="page-heading-link" style="">Bids</span>
 
 
+<a  class="add-btn-plus" style="" ng-click="openNewBidForm()"  >+</a>
+
+
+<div ng-if="openNewBidPopupFlag">
+<bid-config></bid-config>
+</div>
+
+
+
+<div id="data-sorter"  class="sort-btn"><i class="fa fa-sliders"></i>
+<div  class="data-sort-options">
+<div >
+<h5>Sort By</h5>
+<ul>
+      <li><a ng-click="sortData('topic')" ng-class="('topic'==sortOrder)?'selected':''">Topic</a></li>
+      <li><a ng-click="sortData('account')"   ng-class="('account'==sortOrder)?'selected':''">Account</a></li>
+</ul>
+
+
+</div>
+</div>
+</div>
 
 
 
@@ -28,7 +50,7 @@
 <div style="position:absolute;top:104px;left:0px;right:0px;bottom:0px;overflow: auto;">
 <ul class="col2-list bidlist" data-ng-repeat="o in dataList | filter:query  ">
 
-<li><a  data-ng-class="checkActive(o)"  data-ng-click="select($event,o)" data-uuid="{{o.uuid}}"><span class="title">{{o.topic}}</span><span class="desc">{{o.account}}</span></a></li>
+<li><a  data-ng-class="checkActive(o)"  data-ng-click="selectBid(o)" data-uuid="{{o.uuid}}"><span class="title">{{o.topic}}</span><span class="desc">{{o.account}}</span></a></li>
 
 </ul>
 </div>
@@ -37,7 +59,7 @@
 </div>
 <div  style="height:100%;padding:0px;position:absolute;top:0px;bottom:0px;left:350px;right:0px">
 <div style="height:100%;width:100%;">
-<bid-details  ></bid-details>
+<bid-details  bid="selectedBid" ></bid-details>
 </div>
 </div>
 

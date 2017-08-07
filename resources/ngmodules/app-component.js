@@ -68,6 +68,68 @@ app.directive('sideMenu', ['$location', function($location) {
 
 
 
+app.directive('stageView', ['$location', function($location) {
+	  return {
+	      restrict: 'E',
+	      replace: 'true',
+	      templateUrl : 'resources/ngcomponents/stage-view.html',
+	      scope: { stages: '=' },
+	      link: function(scope, elem, attrs) {
+	    	  scope.commonUtil = commonUtil;
+	    	  scope.computeCurveClass=function(index){
+	    		  
+	    		  var returnVal = '';
+	    		  
+	    		  if(0==index){
+	    			  returnVal = returnVal + 'curve-left';
+	    		  }
+	    		  else{
+	    			  returnVal = returnVal + ' left-end ';
+	    		  }
+	    		  
+	    		  if((scope.stages.list.length-1)==index){
+	    			  returnVal = returnVal +' curve-right ';
+	    		  }
+	    		  
+	    		  var indexCurrent = scope.stages.list.indexOf(scope.stages.current);
+	    		  
+	    		  if(index>indexCurrent){
+	    			  returnVal = returnVal +' incomplete ';
+	    		  }
+	    		  
+	    		  if(index>(indexCurrent+1)){
+	    			  returnVal = returnVal +' incompleteArrow ';
+	    		  }
+	    		  
+	    		  if(index==indexCurrent && scope.stages.badending){
+	    			  returnVal = returnVal +' forceerror ';
+	    		  }
+	    		  
+	    		  
+	    		  return returnVal;
+	    	  }
+	    	  scope.computeWidth = function(){
+	    		  if(scope.stages.list.length>0){
+	    			  return Math.floor(100/scope.stages.list.length);  
+	    		  }
+	    		  else{
+	    			  return 100;
+	    		  }
+	    		  
+	    		  
+	    	  }
+
+	    	  
+	    		angular.element(document).ready(function() {
+	    				console.log(scope.stages);
+	    				
+	    		});
+	      },
+	  	
+	  };
+	} ]);
+
+
 
 app.directive('leadDetails', ['leadService', function(leadService) {
 	  return {
@@ -79,6 +141,37 @@ app.directive('leadDetails', ['leadService', function(leadService) {
 	    	  scope.$watch('itemid', function() {
 	    	  scope.commonUtil = commonUtil;
 	    	  scope.lead = leadService.fetchById(scope.itemid);
+	    	  
+	    	  scope.stages={};
+	    	  scope.stages.list=['new','evaluation','qualified'];
+	    	  scope.stages.current=scope.lead.leadStatus;
+	    		  if('disqualified'==scope.stages.current){
+	    			  scope.stages.current = 'qualified';
+	    			  scope.stages.badending = true;
+	    		  }
+	    	  
+	    	  
+	    	  
+	    	  
+	    	  scope.openOpportunityFormPopupFlag = false;
+	    		
+	    		scope.openNewOpportunityForm = function(){
+	    			scope.openOpportunityFormPopupFlag = true;
+	    		};
+	    		
+	    		 scope.$on('closeOpportunityFormPopup', function(evt, data) {
+	    			 	scope.openOpportunityFormPopupFlag = false;
+	    			  });
+	    		
+	    	  
+	    	  
+	    	  
+	    		angular.element(document).ready(function() {
+	    			$(document).ready(function(){
+	    				$('ul.tabs').tabs();	
+	    			});
+	    			});
+	    	  
 	    	  });
 	      },
 	  	
@@ -164,17 +257,82 @@ app.directive('leadForm', ['leadService','contactService','accountService','$roo
 
 
 
+app.directive('opportunityForm', ['leadService','contactService','accountService','$rootScope', function(leadService,contactService,accountService,$rootScope) {
+	  return {
+	      restrict: 'E',
+	      replace: 'true',
+	      templateUrl : 'resources/ngcomponents/opportunity-form.html',
+	      link: function(scope, elem, attrs) {
+	    	  scope.commonUtil = commonUtil;
+	    	  
+	    	  scope.listOfContacts = []; 
+	    	  
+		    	  
+		    	  
+		    	  scope.newContact = {};
+		    	  scope.newAccount = {};
+		    	  
+		    	  
+		    	  scope.useExistingContact = false;
+		    	  scope.useExistingAccount = false;
+		    	  
+		    	  scope.toggleContactSelection = function(v){
+		    		  scope.useExistingContact = v;
+		    	  }
+		    	  
+		    	  scope.toggleAccountSelection = function(v){
+		    		  scope.useExistingAccount = v;
+		    	  }
+		    	  
+		    	  scope.selectedContact= {};
+		    	  scope.allContacts=contactService.fetchAll();
+		    	  
+		    	  scope.selectedAccount= {};
+		    	  scope.allAccounts=accountService.fetchAll();
+		    	  
+		    	  
+		    	  
+		    	  
+		    	  scope.saveOpp = function(){
+		    		  $rootScope.$broadcast('closeOpportunityFormPopup', {});
+		    	  }
+		    	  
+		    	  scope.cancelForm = function(){		    		  
+		    		  $rootScope.$broadcast('closeOpportunityFormPopup', {});
+		    	  }
+		    	  
+		    	  
+		    	  
+	      },
+	      
+	      
+	      
+	      
+	  	
+	  };
+	}]);
+
+
 app.directive('bidDetails', ['bidService', function(bidService) {
 	  return {
 	      restrict: 'E',
 	      replace: 'true',
 	      templateUrl : 'resources/ngcomponents/bid-details.html',
+	      scope: { bid: '=' },
 	      link: function(scope, elem, attrs) {
-	    	  scope.commonUtil = commonUtil;
-	    	  scope.activeBid = bidService.fetchById(1);
-	    	  console.log("Active Bid:");
-	    	  console.log(scope.activeBid);
 	    	  
+	    	  scope.commonUtil = commonUtil;
+	    	  scope.$watch('bid', function() {
+	    	  
+	    	  scope.activeBid = bidService.fetchById(1);
+	    	  scope.activeBid.topic = scope.bid.topic;
+	    	  scope.activeBid.stage = scope.bid.stage;
+	    	  
+	    	  
+	    	  
+	    	  scope.stages={};
+	    	  scope.stages.list=['offerability','solutioning','pricing','proposal'];
+	    	  scope.stages.current=scope.bid.stage;
 	    	  
 	    	  
 	    		scope.bidConfigPopupFlag = false;
@@ -186,6 +344,9 @@ app.directive('bidDetails', ['bidService', function(bidService) {
 	    		scope.$on('closeBidConfigPopup', function(evt, data) {
 	    		 	scope.bidConfigPopupFlag = false;
 	    		  });
+	    		
+	    		
+	    	  });
 	    	  
 	      },
 	  	
@@ -216,6 +377,11 @@ app.directive('contactDetails', [ function() {
 	      scope: { contact: '=' },
 	      link: function(scope, elem, attrs) {
 	    	  scope.commonUtil = commonUtil;
+	    	  angular.element(document).ready(function() {
+	    			$(document).ready(function(){
+	    				$('ul.tabs').tabs();	
+	    			});
+	    			});
 	      },
 	  	
 	  };
@@ -229,6 +395,95 @@ app.directive('accountDetails', [ function() {
 	      scope: { account: '=' },
 	      link: function(scope, elem, attrs) {
 	    	  scope.commonUtil = commonUtil;
+	    	  angular.element(document).ready(function() {
+	    			$(document).ready(function(){
+	    				$('ul.tabs').tabs();	
+	    			});
+	    			});
+	    	  
+	      },
+	  	
+	  };
+	} ]);
+
+
+
+app.directive('opportunityDetails', [ function() {
+	  return {
+	      restrict: 'E',
+	      replace: 'true',
+	      templateUrl : 'resources/ngcomponents/opportunity-details.html',
+	      scope: { opportunity: '=' },
+	      link: function(scope, elem, attrs) {
+	    	  scope.commonUtil = commonUtil;
+	    	  
+	    	  scope.$watch('opportunity', function() {
+	    	  scope.stages={};
+	    	  scope.stages.list=['new','evaluation','qualified'];
+	    	  scope.stages.current=scope.opportunity.status;
+	    		  if('disqualified'==scope.stages.current){
+	    			  scope.stages.current = 'qualified';
+	    			  scope.stages.badending = true;
+	    		  }
+	    	  
+	    
+	    	  
+	    	  
+	    	  
+	    	  angular.element(document).ready(function() {
+	    			$(document).ready(function(){
+	    				$('ul.tabs').tabs();	
+	    			});
+	    			});
+	    	  
+	    	  });
+	    	  
+	      },
+	  	
+	  };
+	} ]);
+
+
+
+app.directive('worklistCalendar', [ function() {
+	  return {
+	      restrict: 'E',
+	      replace: 'true',
+	      templateUrl : 'resources/ngcomponents/worklist-calendar.html',
+	      scope: { events: '=' },
+	      link: function(scope, elem, attrs) {
+	    	  scope.commonUtil = commonUtil;
+	    	  angular.element(document).ready(function() {
+	    				
+	    		  console.log('Events:');
+	    		  console.log(scope.events);
+	    					
+	    					$('#worklist-calendar').fullCalendar({
+	    						header: {
+	    							left: 'prev,next today',
+	    							center: 'title',
+	    							right: 'listDay,listWeek,month'
+	    						},
+
+	    						// customize the button names,
+	    						// otherwise they'd all just say "list"
+	    						views: {
+	    							listDay: { buttonText: 'list day' },
+	    							listWeek: { buttonText: 'list week' }
+	    						},
+
+	    						defaultView: 'month',
+	    						defaultDate: '2017-05-12',
+	    						navLinks: true, // can click day/week names to navigate views
+	    						editable: true,
+	    						eventLimit: true, // allow "more" link when too many events
+	    						events:  scope.events
+	    					});
+	    					
+	    				});
+	    				
+	    				
+	    	  
 	      },
 	  	
 	  };

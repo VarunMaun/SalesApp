@@ -11,7 +11,16 @@
       </ul>
  <div id="test1" class="col s12">
  
+ 
+ <h5>Status</h5>
+ <div>
+ 
+ <stage-view stages="stages"></stage-view>
+ 
+ </div>
+ 
  <h5>Summary</h5>
+ 
  <div class="field">
  <span class="field-label">Lead Source</span>
  <span class="field-val">{{commonUtil.fmt(lead.leadSource)}}</span>
@@ -100,7 +109,16 @@
 
 <div class="action-tray" style="">
 
-<a class="btn blue darken-4" style="font-size:14px;max-width:45%;overflow: hidden;"><i class="fa fa-briefcase" style="margin-right:10px;"></i>New Opportunity</a>
-<a class="btn blue-grey darken-4" style="font-size:14px;max-width:45%;overflow: hidden;"><i class="fa fa-edit" style="margin-right:10px;"></i>New Activity</a>
+<a ng-click="openNewOpportunityForm()" class="btn blue darken-4" style="font-size:14px;max-width:45%;overflow: hidden;"><i class="fa fa-briefcase" style="margin-right:10px;" ></i>Create Opportunity</a>
+<a class="btn blue-grey darken-4" style="font-size:14px;max-width:45%;overflow: hidden;"><i class="fa fa-edit" style="margin-right:10px;"></i>Record Activity</a>
+
+
+
 </div>
+
+
+<div ng-if="openOpportunityFormPopupFlag">
+<opportunity-form></opportunity-form>
+</div>
+
 </div>

@@ -2,87 +2,62 @@
 
 
 
+
 <div class="content-body content-body-full" >
 
 
 <div class="row" style="height:100%">
 
-<div class="col s12 m5" style="height:100%;background: #f1f1f1;padding:0px;">
-<div style="height:100vh;border-right:1px solid #ccc;">
+<div style="height:100%;background: #f1f1f1;padding:0px;position: absolute;top:0px;bottom:0px;left:0px;width:350px;">
+<div style="height:100vh;border-right:1px solid #ccc;position:relative;">
 <div style="height:50px;background: #fff;">
-<span class="page-heading-link">Opportunities</span>
 
 
-<a href="#new-opp-popup" class="add-btn-plus" style="">+</a>
+
+<span class="page-heading-link" style="">Opportunities</span>
+
+<a  class="add-btn-plus" style="" ng-click="openNewOpportunityForm()"  >+</a>
+
+
+<div ng-if="openOpportunityFormPopupFlag">
+<opportunity-form></opportunity-form>
 </div>
 
-<div style="background: #e0e0e0;padding:10px;">
-<input type="text" placeholder="Search" class="search-box-1"/>
-</div>
-<ul class="col2-list opp">
-<li><a class="active"><span class="title">Opportunity for new Phones</span><span class="desc">Vodafone India</span></a></li>
-<li><a><span class="title">Opportunity for NBN</span><span class="desc">Vodafone India</span></a></li>
-<li><a><span class="title">Opportunity for Copper</span><span class="desc">Vodafone India</span></a></li>
 
+
+
+<div id="data-sorter"  class="sort-btn"><i class="fa fa-sliders"></i>
+<div  class="data-sort-options">
+<div >
+<h5>Sort By</h5>
+<ul>
+      <li><a ng-click="sortData('topic')" ng-class="('topic'==sortOrder)?'selected':''">Topic</a></li>
+      <li><a ng-click="sortData('account')"   ng-class="('account'==sortOrder)?'selected':''">Account</a></li>
 </ul>
 
 
 </div>
 </div>
-<div class="col s12 m7" style="height:100%;padding:0px;">
-
-<div class="lead-details">
-<div class="header high">
-
-<div class="title">Opportunity for new Phones</div>
-</div>
-<div class="details">
-<ul class="tabs" style="">
-        <li class="tab"><a class="active" href="#test1">Overview</a></li>
-        <li class="tab"><a href="#test2">Contacts</a></li>
-        <li class="tab"><a href="#test3">Documents</a></li>        
-        <li class="tab"><a href="#test4">Activity Log</a></li>
-      </ul>
- <div id="test1" class="col s12">
- 
- <h5>Opportunity Description</h5>
- 
- <div>New Opportunity to sell phones before GST kicks off</div>
- 
- 
- <h5>Summary</h5>
- <div class="field">
- <span class="field-label">Status</span>
- <span class="field-val">Qualified</span>
- </div>
- <div class="field">
- <span class="field-label">Rating</span>
- <span class="field-val">Priority</span>
- </div>
- <div class="field">
- <span class="field-label">Assigned To</span>
- <span class="field-val">myself</span>
- </div>
- 
- 
- 
-
- 
- 
- <a class="btn amber darken-4" style="display:block;width:150px;margin:20px;">Create Bid</a>
- 
- </div>
-    
-    <div id="test2" class="col s12"><i>No Contacts Found</i></div>
-    <div id="test3" class="col s12"><i>No Documents Found</i></div>
-    <div id="test4" class="col s12"><i>No Activities Found</i></div>
-
 </div>
 
 
 </div>
 
+<div style="background: #e0e0e0;padding:10px;">
+<input type="text" placeholder="Search" class="search-box-1" data-ng-model="query"  />
+</div>
+<div style="position:absolute;top:104px;left:0px;right:0px;bottom:0px;overflow: auto;">
+<ul class="col2-list opp" data-ng-repeat="o in dataList | filter:query  ">
 
+<li><a  data-ng-class="checkActive(o)"  data-ng-click="selectOpportunity(o)" data-uuid="{{o.uuid}}"><span class="title">{{o.topic}}</span><span class="desc">{{o.account}}</span></a></li>
+
+</ul>
+</div>
+
+</div>
+</div>
+<div style="height:100%;padding:0px;position:absolute;top:0px;bottom:0px;left:350px;right:0px">
+<opportunity-details opportunity="selectedOpportunity" ></opportunity-details>
 
 </div>
 
@@ -97,18 +72,5 @@
 
 
 
-
-
-
-<script type="text/javascript">
-
-$(document).ready(function(){
-
-	
-	 $('ul.tabs').tabs();
-	
-});
-
-</script>
 
 

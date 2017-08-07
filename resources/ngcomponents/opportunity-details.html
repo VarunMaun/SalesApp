@@ -1,0 +1,82 @@
+<div class="lead-details" style="position:relative;height:100%;width:100%;">
+<div class="header">
+<div class="title">{{opportunity.topic}} </div>
+
+</div>
+
+<div class="details" style="position:absolute;top:50px;bottom:80px;left:0px;right:0px;">
+<ul class="tabs" style="">
+        <li class="tab"><a class="active" href="#test1">Overview</a></li>
+        <li class="tab"><a  href="#test2">Bids</a></li>
+        <li class="tab"><a  href="#test3">Contacts</a></li>
+        <li class="tab"><a  href="#test4">Documents</a></li>
+        <li class="tab"><a href="#test5">Activity Log</a></li>
+      </ul>
+ <div id="test1" class="col s12">
+ 
+ 
+ <h5>Status</h5>
+ <div>
+ 
+ <stage-view stages="stages"></stage-view>
+ 
+ </div>
+ 
+ 
+ <h5>Summary</h5>
+
+<div class="field">
+ <span class="field-label">Account</span>
+ <span class="field-val">{{opportunity.account}}</span>
+ </div>
+
+<div class="field">
+ <span class="field-label">Desc</span>
+ <span class="field-val">{{opportunity.desc}}</span>
+ </div>
+
+
+<div class="field">
+ <span class="field-label">Status</span>
+ <span class="field-val">{{opportunity.status}}</span>
+ </div>
+
+<h5>Details</h5>
+
+<div class="field">
+ <span class="field-label">Value</span>
+ <span class="field-val" style="font-weight:bold;">${{commonUtil.ftmNumber(opportunity.value)}}</span>
+ </div>
+<div class="field">
+ <span class="field-label">Priority</span>
+ <span class="field-val">{{opportunity.priority}}</span>
+ </div>
+
+
+
+
+
+</div>
+
+
+<div id="test2" class="col s12">
+<i>No Bids/Opportunities Found</i>
+</div>
+<div id="test3" class="col s12">
+<i>No Contacts Found</i>
+</div>
+<div id="test4" class="col s12">
+<i>No Documents Found</i>
+</div>
+<div id="test5" class="col s12">
+<i>No Activities Found</i>
+</div>
+
+</div>
+<div class="action-tray" style="">
+
+<a class="btn blue darken-4" style="font-size:14px;max-width:45%;overflow: hidden;"><i class="fa fa-briefcase" style="margin-right:10px;"></i>Create Bid</a>
+<a class="btn blue-grey darken-4" style="font-size:14px;max-width:45%;overflow: hidden;"><i class="fa fa-edit" style="margin-right:10px;"></i>Record Activity</a>
+</div>
+
+</div>

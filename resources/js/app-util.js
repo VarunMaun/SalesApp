@@ -31,8 +31,10 @@ var commonUtil = {
 	  }
 	  return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
 	    s4() + '-' + s4() + s4() + s4();
-	}
+	},
  
- 
+ ftmNumber: function(val){
+	 return numeral(val).format('0,0');;
+ }
 
 };

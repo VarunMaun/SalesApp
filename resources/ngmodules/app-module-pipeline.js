@@ -61,24 +61,24 @@ app.controller('leadsMasterController', [ '$scope','$location','$filter','leadSe
 }]);
 
 
-app.controller('bidsMasterController', [ '$scope','$location','$filter','bidService', function($scope,$location,$filter,bidService) {
+app.controller('bidsMasterController', [ '$scope','$location','$filter','bidService','pipelineService', function($scope,$location,$filter,bidService,pipelineService) {
 	$scope.dataList = [];
-	$scope.selectedId = null;
+	$scope.selectedBid = {};
 	$scope.query = '';
 
-	$scope.select = function($event,o){
-		$scope.selectedId = o.uuid;
+	$scope.selectBid = function(o){
+		$scope.selectedBid = o;
 	}
 	$scope.checkActive = function (o) {		
-	     return (($scope.selectedId === o.uuid)?'active':'nope');
+	     return (($scope.selectedBid.uuid === o.uuid)?'active':'nope');
 	};
 	
-	$scope.sortOrder = '';
+	$scope.sortOrder = 'topic';
 	$scope.sortData = function(sortField){
 		$scope.sortOrder = sortField;
 		if($scope.dataList.length>0){
 			$scope.dataList =	$filter('orderBy')($scope.dataList, sortField)
-			$scope.selectedId = $scope.dataList[0].uuid;
+			$scope.selectedBid = $scope.dataList[0];
 		}
 	}
 	
@@ -86,12 +86,20 @@ app.controller('bidsMasterController', [ '$scope','$location','$filter','bidServ
 	$scope.filterData = function(filterGroup){
 		$scope.filterGroup = filterGroup;
 		if('all'==filterGroup){
-			$scope.dataList = bidService.fetchAll();
+			$scope.dataList = pipelineService.fetchAll();
 		}
 		$scope.sortData($scope.sortOrder);
 	}
 	
 	
+	$scope.openNewBidPopupFlag = false;
+	$scope.openNewBidForm = function(){
+		$scope.openNewBidPopupFlag = true;	
+	}
+	$scope.$on('closeBidConfigPopup', function(evt, data) {
+	 	$scope.openNewBidPopupFlag = false;
+	  });
+  
 
 	
 	
@@ -233,3 +241,110 @@ app.controller('accountMasterController', [ '$scope','$location','$filter','acco
 	}
 	$scope.init();
 }]);
+
+
+
+app.controller('worklistMasterController', [ '$scope','$location','$filter','worklistService', function($scope,$location,$filter,worklistService) {
+	
+	$scope.worklistItems = worklistService.fetchAll();
+	
+}]);
+
+
+app.controller('pipelineMasterController', [ '$scope','$location','$filter','pipelineService', function($scope,$location,$filter,pipelineService) {
+	
+	
+	
+	
+	$scope.init = function () {		
+		$scope.commonUtil = commonUtil;
+		
+		$scope.allBids = pipelineService.fetchAll();
+		
+		$scope.bids = {};
+		$scope.bids['offerability'] = [];
+		$scope.bids['solutioning'] = [];
+		$scope.bids['pricing'] = [];
+		$scope.bids['proposal'] = [];
+		
+		$scope.sum = {};
+		$scope.sum['offerability'] = 0;
+		$scope.sum['solutioning'] = 0;
+		$scope.sum['pricing'] = 0;
+		$scope.sum['proposal'] = 0;
+		
+		
+		for(var iter = 0;iter<$scope.allBids.length;iter++){
+			var stage = $scope.allBids[iter].stage;
+			$scope.bids[stage].push($scope.allBids[iter]);
+			$scope.sum[stage] = $scope.sum[stage] + $scope.allBids[iter].value;
+		}
+	}
+	$scope.init();
+	
+	
+}]);
+
+
+
+
+
+
+
+
+app.controller('opportunityMasterController', [ '$scope','$location','$filter','opportunityService', function($scope,$location,$filter,opportunityService) {
+	
+	$scope.dataList = [];
+	$scope.selectedOpportunity = {};
+	$scope.query = '';
+
+	$scope.selectOpportunity = function(o){
+		$scope.selectedOpportunity = o;
+	}
+	$scope.checkActive = function (o) {		
+	     return (($scope.selectedOpportunity.uuid === o.uuid)?'active':'nope');
+	};
+	
+	$scope.sortOrder = '';
+	$scope.sortData = function(sortField){
+		$scope.sortOrder = sortField;
+		if($scope.dataList.length>0){
+			$scope.dataList =	$filter('orderBy')($scope.dataList, sortField)
+			$scope.selectedOpportunity = $scope.dataList[0];
+		}
+	}
+	
+	$scope.filterGroup = '';
+	$scope.filterData = function(filterGroup){
+		$scope.filterGroup = filterGroup;
+		if('all'==filterGroup){
+			$scope.dataList = opportunityService.fetchAll();
+		}
+		else{
+		}
+		$scope.sortData($scope.sortOrder);
+	}
+	
+	
+	$scope.openOpportunityFormPopupFlag = false;
+	
+	$scope.openNewOpportunityForm = function(){
+		$scope.openOpportunityFormPopupFlag = true;
+	};
+	
+	 $scope.$on('closeOpportunityFormPopup', function(evt, data) {
+		 	$scope.openOpportunityFormPopupFlag = false;
+		  });
+	
+	
+	 
+	$scope.init = function () {		
+		$scope.filterData('all');
+		$scope.sortData('topic');
+	}
+	$scope.init();
+	
+	
+	
+}]);
+

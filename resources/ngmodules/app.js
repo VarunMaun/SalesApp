@@ -8,9 +8,15 @@ var app = angular.module("mcpq", ["ngRoute","ui.materialize","app.directives","a
 
 app.config(function($routeProvider) {
     $routeProvider
+    .when("/home", {
+   	 templateUrl : 'resources/ngpages/home.html',
+   })
     .when("/map", {
     	 templateUrl : 'resources/ngpages/map.html',
-         
+    })
+    .when("/worklist", {
+    	 templateUrl : 'resources/ngpages/worklist.html',
+    	 controller  : 'worklistMasterController'
     })
     .when("/leads", {
    	 templateUrl : 'resources/ngpages/leads.html',
@@ -22,9 +28,12 @@ app.config(function($routeProvider) {
     })
     .when("/opportunities", {
     	 templateUrl : 'resources/ngpages/opportunities.html',
+    	 controller  : 'opportunityMasterController'
     })
     .when("/pipeline", {
     	 templateUrl : 'resources/ngpages/pipeline-summary.html',
+    	 controller  : 'pipelineMasterController'
+    	 
     })
     .when("/bids-summary", {
     	 templateUrl : 'resources/ngpages/bids-table.html',
@@ -53,5 +62,5 @@ app.config(function($routeProvider) {
     
     
     
-   .otherwise({templateUrl : 'resources/ngpages/dummy.html',}) 
+   .otherwise({redirectTo: '/home'}) 
 });
