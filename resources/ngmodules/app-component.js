@@ -182,7 +182,7 @@ app.directive('productDetails', [ function() {
 	} ]);
 
 
-app.directive('bidConfig', ['bidService','productService','$rootScope', function(bidService,productService,$rootScope) {
+app.directive('bidConfig', ['bidService','productService','accountService','$rootScope', function(bidService,productService,accountService,$rootScope) {
 	  return {
 	      restrict: 'E',
 	      replace: 'true',
@@ -241,6 +241,7 @@ app.directive('bidConfig', ['bidService','productService','$rootScope', function
 	    		  "nickname":"Home Address",
 	    		  "pinCode":"382030",
 	    		  "state":"Gujarat",
+	    		  "discount":0.5,
 	    		  "uuid":"91c3a54d-eee0-6208-ff55-ab2a0cfed1e2"});
 	    	  
 	    	  scope.addressList.push({"city":"Gandhinagar",
@@ -252,12 +253,14 @@ app.directive('bidConfig', ['bidService','productService','$rootScope', function
 	    		  "nickname":"Office Address",
 	    		  "pinCode":"382009",
 	    		  "state":"Gujarat",
+	    		  "discount":0,
 	    		  "uuid":"91c3a54d-eee0-6208-ff66-ab2a0cfed1e2"});
 	    	  
 	    	  
 	    	  
 	    	  scope.saveNewAddress = function(){
 	    		  scope.newAddress.uuid = commonUtil.guid();
+	    		  scope.newAddress.discount = 0.0;
 	    		  scope.addressList.push(scope.newAddress);
 	    		  scope.newAddress = Address();
 	    	  }
@@ -289,15 +292,63 @@ app.directive('bidConfig', ['bidService','productService','$rootScope', function
 	    	  }
 	    	  
 	    	  scope.addProductToSites = function(){
-	    		  console.log('Adding product to sites:');
-	    		  console.log('Selected Product:');
-	    		  console.log(scope.selectedProduct);
-	    		  console.log('Selected Sites:');
-	    		  console.log(scope.selectedProductAddSites);
 	    		  
+	    		  if(null != scope.selectedProductAddSites){
+	    			  var selectedSiteList = [];
+	    			  for(var iter=0;iter<scope.selectedProductAddSites.length;iter++){
+	    				  selectedSiteList.push(scope.selectedProductAddSites[iter].uuid);
+	    			  }
+	    			  
+	    			  
+	    			  for(var iter=0;iter<scope.addressList.length;iter++){
+	    				  
+	    				  if(-1 != selectedSiteList.indexOf(scope.addressList[iter].uuid)){
+	    				  
+	    				   var productList = scope.addressList[iter].productList;
+	    				   if(null == productList){
+	    					   productList= [];
+	    				   }
+	    				   
+	    				   
+	    				   
+	    				   
+	    				   
+	    				   var prodToAdd = $.extend(true, {}, scope.selectedProduct);
+	    				   prodToAdd.quantity=1;
+	    				   prodToAdd.discount=0.0;
+	    				   prodToAdd.tax=0.0;
+	    				   
+	    				   productList.push(prodToAdd);
+	    				   
+	    				   scope.addressList[iter].productList = productList;
+	    				  }
+	    				   
+	    			  }
+	    			  
+	    			  
+	    			  scope.selectedProductAddSites = []; 
+	    			  
+	    			  
+	    		  }
 	    		  
-	    		  
+	    		  }
+	    	  
+	    	  
+	    	  /*Pricing*/
+	    	  
+	    	  scope.accountLevelDiscount = 0.0;
+	    	  
+	    	  /*Account*/
+	    	  
+	    	  scope.useExistingAccount=true;
+	    	  
+	    	  scope.toggleAccountSelection = function(v){
+	    		  scope.useExistingAccount = v;
 	    	  }
+	    	  
+	    	  scope.selectedAccount= {};
+	    	  scope.allAccounts=accountService.fetchAll();
+	    	  
 	    	  
 	      },
 	  	

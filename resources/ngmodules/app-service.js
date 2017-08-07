@@ -211,7 +211,7 @@ app.factory('productService', function() {
 	var service = {};
 
 	service.fetchAll = function() {
-		return MOCK_PRODUCTS;
+		return MOCK_PRODUCTS.slice(0, 15);;
 	}
 
 	return service;

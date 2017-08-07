@@ -1398,12 +1398,24 @@ content:':';
 
 .bid-table{
 	width:100%;
-	margin:10px 0px;
+	margin:0px;
 	border:1px solid #ccc;
 }
 
+.bid-table thead tr th{
+	padding:5px 3px;
+	text-transform: uppercase;;
+	font-size: 12px;
+    color: #555f61;
+}
+
+.bid-table input{
+	margin:0px !important;
+	color:#131516 !important;
+}
+
 .bid-table td{
-	vertical-align: top;
+	vertical-align: middle;
 	padding:3px;	
 	font-size:12px;
 	text-transform: capitalize;;
